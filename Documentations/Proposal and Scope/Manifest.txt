@@ -1,0 +1,42 @@
+problem:
+1.Monitoring problem
+2.communication gap and No opportunity of online group study
+3.Generally we meet teachers in our free time but the teachers may not be free in that time.In our System teachers can monitor
+project at their free time.
+4.Peer to peer (Student) collaborative platform.
+5. Can't always have access to the teachers.
+
+Scope:
+1.No system till date exists which solves all the problem stated above.
+2.Presents a graphical interactive environment for learning and teaching
+3.Real time code sharing for  tutorial
+
+
+Target Audience:
+Students,Teachers,Teaching enthusiasts
+
+
+
+
+Feature:
+1.Version control
+2.Project mangement
+3.Project supervising
+4.Graphical environment
+5.Code sharing platform
+6.peer to peer tutoring
+7.Reward system(Will get benifit in forum[Question limit])
+8.Collaborative forum
+
+Relevant projects
+Online classroom of coursera(A former portugeese website)
+Moodle
+
+Slide:
+
+1.Image and tagline
+2.Problem statement
+3.Scope
+4.Target audience
+5-6.Feature
+7.End
