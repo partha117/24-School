@@ -1,0 +1,41 @@
+Spring
+1.Login,sign up->(db,email confirmation (registration widget))
+  Name,Gender,Institution,Password,Email,research interest and bla bla)
+2.Git account(Optional)->(API)(username,oauth,(git push optional))
+3.Canvas(registered user,angularjs,HTML5,db)->(all user in group can invite anyone ,restriction one user at a time)(image optional)
+4.Project Management->(supervisee git account,student git account, system account)(oAuth)(Teacher can assign their student accounts in a group ,can create a group)
+5.Code sharing(system account,angular js,HTML5)(like canvas,code beautifier(highlight.js))(optional run)
+6.Forum(system account,db)(initialized with tag,question,answer,realtime board,notification,upVaote,downVote)
+7.Messaging system(angular js,db)(Block system,messaging history)
+8.Search(name)(real time search)(intelligent search optional)
+9.Rating(received  from canvas,forum,can be used in forum)
+10.Course page:video,
+11.Course Mangement:
+12.User can create course 
+Student can get the list of courses of a teacher and can apply in these course.Teacher will approve the requests.
+teacher will get git repo for a group of student.
+13.Report:which language,code by each user in project, commit frequency(plotly.js)
+
+(3,5,8,10)-<Rafid
+(2,4,12,13)->Partha
+(1,6,7,9)->Mamun
+Use case->(3days)
+Database Design->()+
+Class Diagram->(14 days)
+Gui Design->(7 days)
+Resource->(14 days)
+1.(3 days)
+2.(7 days)
+3,5-(20 days)
+4,12.(25 days)
+5.(14 days)
+6.(4 days)
+7.(7 days)
+8.(2 days)
+9.(1 days)
+10.(1 days)
+11.(7 days)
+13.(7 days)
+
+
+
