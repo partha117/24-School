@@ -1,5 +1,7 @@
 package com.rafid.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
@@ -18,6 +20,8 @@ public class Users {
     String firstName;
     @Column(columnDefinition = "VARCHAR(200)")
     String lastName;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     Date birthDate;
     @Column(columnDefinition = "VARCHAR(200)")
@@ -38,13 +42,14 @@ public class Users {
     String zipCode;
     @Column(columnDefinition = "NUMBER(10)")
     int rating;
-    Blob profilePic;
+    @Lob
+    private byte[] profilePic;
 
     public Users(){
 
     }
 
-    public Users(String userName, String firstName, String lastName, Date birthDate, String email, String password, String gender, String profession, String country, String state, String city, String zipCode, Blob profilePic) {
+    public Users(String userName, String firstName, String lastName, Date birthDate, String email, String password, String gender, String profession, String country, String state, String city, String zipCode, byte[] profilePic) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -189,11 +194,11 @@ public class Users {
         this.rating = rating;
     }
 
-    public Blob getProfilePic() {
+    public byte[] getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(Blob profilePic) {
+    public void setProfilePic(byte[] profilePic) {
         this.profilePic = profilePic;
     }
 }
