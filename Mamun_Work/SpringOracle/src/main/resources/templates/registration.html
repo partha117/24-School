@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/">
+        <label>first name : </label><input type="text" name="firstName" /><br/>
+        <label>last name : </label><input type="text" name="lastName" /><br/>
+        <label>user name : </label><input type="text" name="userName" /><br/>
+        <label>birth date : </label><input type="date" name="birthDate" /><br/>
+        <label>email : </label><input type="email" name="email" /><br/>
+        <label>password : </label><input type="password" name="password" /><br/>
+        <label>country : </label><input type="text" name="country" /><br/>
+        <label>state : </label><input type="text" name="state" /><br/>
+        <label>city : </label><input type="text" name="city" /><br/>
+        <label>zip Code : </label><input type="text" name="zipCode" /><br/>
+        <label>gender : </label><input type="radio" name="gender" value="Male"/>Male<br/>
+        <input type="radio" name="gender" value="Female"/>Female<br/>
+        <input type="radio" name="gender" value="Others"/>Others<br/>
+        <label>profession : </label><input type="text" name="profession" /><br/>
+    <!--    <label>profile pic : </label><input type="file" name="profilePic" /><br/> -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="submit" value="sign up"/>
+    </form>
+
+</body>
+</html>
