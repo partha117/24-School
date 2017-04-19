@@ -8,4 +8,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by ASUS on 4/18/2017.
  */
 public interface UserRepository extends CrudRepository<Users, Long> {
+    Iterable<Users> findByUserNameAndPassword(String userName, String password);
 }
