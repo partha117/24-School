@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by ASUS on 4/18/2017.
@@ -21,6 +22,9 @@ public class RegistrationCotroller {
     public String userRegistration(){
         return "registration";
     }
+
+    @RequestMapping("/registration2")
+    public String userRegistration2(){return "registration2";}
 
     @PostMapping("/home")
     public String userSubmit(@ModelAttribute Users users, Model model){
