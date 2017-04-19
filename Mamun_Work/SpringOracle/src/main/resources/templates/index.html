@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>24 School</title>
+    <title>Login</title>
+    <!-- Latest compiled and minified CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -23,16 +24,212 @@
             th:src="@{/webjars/angularjs/1.6.2/angular.min.js}"></script>
 
 </head>
-<body>
-    <section class="container">
-        <div>
-            <h1 th:text="'Successfully logged in '+ ${name} +''"/>
-            <img src="../static/images/24School_logo.png" th:src="@{images/24School_logo.png}"  class="center-block img-responsive img-circle" width="400" height="auto">
 
+<body>
+
+
+<div class="container well">
+
+    <div class="center-block">
+    <img src="../images/24School_logo.png" class="img-circle img-responsive center-block" th:width="400" th:height="auto"/>
+    </div>
+    <hr>
+
+    <form class="form-horizontal" action="/login" method="post">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Username</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input  name="userName" placeholder="Username" class="form-control"  type="text">
+                </div>
+            </div>
         </div>
 
-    </section>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Password</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <input  name="password" placeholder="Password" class="form-control"  type="password">
+                </div>
+            </div>
+        </div>
 
+
+
+
+
+        <!-- Text input-->
+
+
+        <!-- Text input-->
+
+
+        <!-- Text input-->
+
+
+        <!-- Text input-->
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+                    <input  class="form-control btn btn-primary"  type="Submit" value="Sign In">
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    </form>
+</div>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+    <form class="well form-horizontal" action="#" method="post">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Event Name</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-king"></i></span>
+                    <input  name="eventName" placeholder="Event Name" class="form-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Event Type</label>
+            <div class="col-md-4 selectContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="eventType" class="form-control selectpicker" >
+                        <option >Personal</option>
+                        <option>Professional</option>
+                        <option>Conference</option>
+                        <option>Grand Event</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Event Description</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <textarea class="form-control" name="description" placeholder="Event Description"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Event Time</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input name="eventDate" placeholder="DD" class="form-control"  type="text">
+                    <input name="eventMonth" placeholder="MM" class="form-control"  type="text">
+                    <input name="eventYear" placeholder="YYYY" class="form-control"  type="text"><br>
+                    <input name="eventHour" placeholder="HH" class="form-control"  type="text">
+                    <input name="eventMinute" placeholder="MI" class="form-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input--
+<div class="form-group">
+    <label class="col-md-4 control-label">Country</label>
+    <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input name="country" placeholder="country" class="form-control"  type="text">
+        </div>
+    </div>
+</div>
+
+
+<!-- Text input--
+
+<div class="form-group">
+    <label class="col-md-4 control-label">City</label>
+    <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input name="city" placeholder="city" class="form-control" type="text">
+        </div>
+    </div>
+</div>
+
+<!-- Text input--
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Road No.</label>
+    <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+            <input name="roadNo" placeholder="e.g. 12/A" class="form-control" type="text">
+        </div>
+    </div>
+</div>
+
+<!-- Text input--
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Building No.</label>
+    <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input name="buildingNo" placeholder="e.g. 936/A" class="form-control"  type="text">
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label"></label>
+    <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+            <input  class="form-control btn btn-warning"  type="Submit" value="Create Event">
+        </div>
+    </div>
+</div>
+
+
+</form>
+
+
+
+-->

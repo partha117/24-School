@@ -35,9 +35,9 @@ public class LoginController {
 
        if(users.hasNext()){
            model.addAttribute("name", userName);
-           return "index";
+           return "home";
        }
-        return "login";
+        return "index";
     }
 
 

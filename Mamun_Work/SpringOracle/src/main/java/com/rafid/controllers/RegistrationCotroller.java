@@ -22,11 +22,11 @@ public class RegistrationCotroller {
         return "registration";
     }
 
-    @PostMapping("/")
+    @PostMapping("/home")
     public String userSubmit(@ModelAttribute Users users, Model model){
         userRepository.save(users);
         model.addAttribute("name", users.getUserName());
-        return "index";
+        return "home";
     }
 
 }
