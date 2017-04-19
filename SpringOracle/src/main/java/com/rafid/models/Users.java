@@ -13,7 +13,7 @@ import java.util.Date;
 public class Users {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    String userId;
+    int userId;
     @Column(unique = true, columnDefinition = "VARCHAR(100)", nullable = false)
     String userName;
     @Column(columnDefinition = "VARCHAR(200)")
@@ -38,17 +38,17 @@ public class Users {
     String state;
     @Column(columnDefinition = "VARCHAR(100)")
     String city;
-    @Column(columnDefinition = "VARCHAR(100)")
-    String zipCode;
+    @Column(columnDefinition = "NUMBER")
+    int zipCode;
     @Column(columnDefinition = "NUMBER(10)")
     int rating;
-    @Lob
-    private byte[] profilePic;
+  //  @Lob
+ //   private byte[] profilePic;
 
     public Users(){
 
     }
-
+/*
     public Users(String userName, String firstName, String lastName, Date birthDate, String email, String password, String gender, String profession, String country, String state, String city, String zipCode, byte[] profilePic) {
         this.userName = userName;
         this.firstName = firstName;
@@ -63,10 +63,10 @@ public class Users {
         this.city = city;
         this.zipCode = zipCode;
 
-        this.profilePic = profilePic;
-    }
+       // this.profilePic = profilePic;
+    }*/
 
-    public Users(String userName, String firstName, String lastName, Date birthDate, String email, String password, String gender, String profession, String country, String state, String city, String zipCode) {
+    public Users(int userId, String userName, String firstName, String lastName, Date birthDate, String email, String password, String gender, String profession, String country, String state, String city, int zipCode) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -79,14 +79,17 @@ public class Users {
         this.state = state;
         this.city = city;
         this.zipCode = zipCode;
+        this.userId = userId;
 
     }
 
-    public String getUserId() {
+
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -178,11 +181,11 @@ public class Users {
         this.city = city;
     }
 
-    public String getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -194,11 +197,11 @@ public class Users {
         this.rating = rating;
     }
 
-    public byte[] getProfilePic() {
-        return profilePic;
-    }
+  //  public byte[] getProfilePic() {
+     //   return profilePic;
+ //   }
 
-    public void setProfilePic(byte[] profilePic) {
-        this.profilePic = profilePic;
-    }
+  //  public void setProfilePic(byte[] profilePic) {
+   //     this.profilePic = profilePic;
+  //  }
 }
