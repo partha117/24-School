@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap-theme.min.css}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.js}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.0.min.js"
+            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+            crossorigin="anonymous"
+            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/angularjs/1.6.2/angular.min.js"
+            th:src="@{/webjars/angularjs/1.6.2/angular.min.js}"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+
+        function selectGender(gender){
+
+            var genderM = document.getElementById("genderM");
+            var genderF = document.getElementById("genderF");
+            var genderO = document.getElementById("genderO");
+
+            if (gender == "M"){
+                genderM.style.backgroundColor = "#000";
+                genderM.style.color = "#fff";
+
+                genderF.style.backgroundColor = "#fff";
+                genderF.style.color = "#000";
+                genderO.style.backgroundColor = "#fff";
+                genderO.style.color = "#000";
+            }
+            else if(gender=="F"){
+                genderF.style.backgroundColor = "#000";
+                genderF.style.color = "#fff";
+
+                genderM.style.backgroundColor = "#fff";
+                genderM.style.color = "#000";
+                genderO.style.backgroundColor = "#fff";
+                genderO.style.color = "#000";
+
+            }
+            else {
+                genderO.style.backgroundColor = "#000";
+                genderO.style.color = "#fff";
+
+                genderM.style.backgroundColor = "#fff";
+                genderM.style.color = "#000";
+                genderF.style.backgroundColor = "#fff";
+                genderF.style.color = "#000";
+            }
+
+        }
+    </script>
+
+</head>
+
+
+<body>
+
+<div class="container well">
+
+
+    <div class="center-block">
+        <img src="../images/24School_logo.png" class="img-circle img-responsive center-block" th:width="300" th:height="auto"/>
+    </div>
+    <div class="center-block"><h2>Please complete your profile</h2></div><br>
+
+    <form class="form-horizontal" action="/home" method="post">
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Birthdate: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input  name="birthDate" placeholder="MM/DD/YYYY" id="datepicker" class="myForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Gender: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn myBlackBtn" id="genderM">
+                            <input type="radio" name="gender" value="M" onclick="selectGender('M')">Male
+                        </label>
+                        <label class="btn myWhiteBtn" id="genderF">
+                            <input type="radio" name="gender" value="F" onclick="selectGender('F')">Female
+                        </label>
+                        <label class="btn myWhiteBtn" id="genderO">
+                            <input type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
+                        </label>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Country: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input  name="country" placeholder="Country" class="myForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">State: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input  name="state" placeholder="State" class="myForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">City: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input  name="city" placeholder="City" class="myForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Zip code: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input  name="zipCode" placeholder="Zip code" class="myForm-control"  type="number">
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Text input-->
+
+        <div class="form-group">
+            <label class="col-md-5 control-label"></label>
+            <div class="col-md-3 inputGroupContainer">
+                <div class="input-group">
+                    <input  class="myButton  btn btn-success"  type="Submit" value="Done">
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    </form>
+</div>
+
+</body>
+</html>

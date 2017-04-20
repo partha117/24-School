@@ -1,0 +1,92 @@
+.myclass{width:900px; height:auto; margin:auto;}
+.myForm-control{
+    display: inherit;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #101010;
+    background-image: none;
+    border: 2px solid #000;
+    border-radius:1000px;
+}
+
+
+.myBg-white{
+    background-color: white;
+}
+.myBg-black{
+    background-color: black;
+}
+.myBg-cyan{
+    background-color: cyan;
+}
+.myButton{
+    display: inherit;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #2e6da4;
+    background-image: none;
+    border: 2px solid #000;
+    border-radius:1000px;
+
+}
+
+.myBlueBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #2e6da4;
+    border: 2px solid #000;
+}
+.myGreenBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: green;
+    border: 2px solid #000;
+}
+.myWhiteBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+}
+.myBlackBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #000;
+    border: 2px solid #000;
+}
+
+.myPinkBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #e4b9b9;
+    border: 2px solid #000;
+}
+
+.myWell {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #101010;
+    border: 2px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
