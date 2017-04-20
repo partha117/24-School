@@ -24,14 +24,32 @@
 
 </head>
 <body>
-    <section class="container">
-        <div>
+    <div class="container">
+        <div class="well">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="../images/24School_logo.png" class="top-left img-responsive img-circle" width="100" height="auto" >
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <label class="btn myWhiteBtn"><a href="/home"></a>Home</label>
+                        <label class="btn myBlueBtn"><a href="/profile"></a>Profile</label>
+                        <label class="btn myBlueBtn"><a href="/messages"></a>Messages</label>
+                        <label class="btn myBlueBtn"><a href="/forum"></a>Forum</label>
+                        <label class="btn myBlueBtn"><a href="/"></a>Logout</label>
+                    </div>
+                </div>
+            </div>
+
             <h1 th:text="'Successfully logged in '+ ${name} +''"/>
-            <img src="../static/images/24School_logo.png" th:src="@{images/24School_logo.png}"  class="center-block img-responsive img-circle" width="400" height="auto">
+
+
 
         </div>
 
-    </section>
+    </div>
 
 
 </body>
