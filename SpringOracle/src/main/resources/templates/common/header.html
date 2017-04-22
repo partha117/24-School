@@ -1,0 +1,74 @@
+
+
+<head xmlns:th="http://www.thymeleaf.org" th:fragment="common-header">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="../../static/css/myStyle.css" th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>
+    <!--<link href="../../static/css/bootstrap.css" rel="stylesheet" type="text/css">-->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.0.min.js"
+            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+            crossorigin="anonymous"
+            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/angularjs/1.6.2/angular.min.js"
+            th:src="@{/webjars/angularjs/1.6.2/angular.min.js}"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" th:href="@{/webjars/ui/1.12.1/themes/base/jquery-ui.css}">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+
+        function selectGender(gender){
+
+            var genderM = document.getElementById("genderM");
+            var genderF = document.getElementById("genderF");
+            var genderO = document.getElementById("genderO");
+
+            if (gender == "M"){
+                genderM.style.backgroundColor = "#000";
+                genderM.style.color = "#fff";
+
+                genderF.style.backgroundColor = "#fff";
+                genderF.style.color = "#000";
+                genderO.style.backgroundColor = "#fff";
+                genderO.style.color = "#000";
+            }
+            else if(gender=="F"){
+                genderF.style.backgroundColor = "#000";
+                genderF.style.color = "#fff";
+
+                genderM.style.backgroundColor = "#fff";
+                genderM.style.color = "#000";
+                genderO.style.backgroundColor = "#fff";
+                genderO.style.color = "#000";
+
+            }
+            else {
+                genderO.style.backgroundColor = "#000";
+                genderO.style.color = "#fff";
+
+                genderM.style.backgroundColor = "#fff";
+                genderM.style.color = "#000";
+                genderF.style.backgroundColor = "#fff";
+                genderF.style.color = "#000";
+            }
+
+        }
+    </script>
+</head>
+
+
+
+
+
