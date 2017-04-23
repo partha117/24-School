@@ -1,241 +1,173 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- Latest compiled and minified CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <head th:replace="common/header :: common-header">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap-theme.min.css}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>
-    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.js}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script
-            src="https://code.jquery.com/jquery-3.2.0.min.js"
-            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
-            crossorigin="anonymous"
-            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
-
-    <script src="http://cdn.jsdelivr.net/webjars/angularjs/1.6.2/angular.min.js"
-            th:src="@{/webjars/angularjs/1.6.2/angular.min.js}"></script>
-
-</head>
-
-<body>
+  <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> 24School &amp; </title>
 
 
-<div class="container well">
+		<!---newly added--------- for the new login page... - Mamun---------->
+
+        <!-- CSS-->
+
+    </head>
+
+    <body>
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+
+					<div class="row well">
+						<div class="col-sm-6">
+							<div >
+								<img src="../images/24School_logo.png" class="center-left img-responsive img-circle" width="200" height="auto" >
+							</div>
+                  <!--  <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Bootstrap</strong> Login &amp; Register Forms</h1>
+                            <div class="description">
+                            	<p>
+	                            	This is a free responsive <strong>"login and register forms"</strong> template made with Bootstrap. 
+	                            	Download it on <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>, 
+	                            	customize and use it as you like!
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+						</div>
+
+						<div class="col-sm-3">
 
 
-    <div class="center-block">
-    <img src="../images/24School_logo.png" class="img-circle img-responsive center-block" th:width="300" th:height="auto"/>
-    </div>
+							<div class="form-box">
+								<div class="form-top">
+									<div class="form-top-left">
+										<h3>Login to our site</h3>
+									</div>
+									<div class="form-top-right">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="form-bottom">
+									<form role="form" action="/login" method="post" class="login-form">
+										<div class="form-group">
+											<label class="sr-only" for="form-username">Username</label>
+											<input type="text" name="userName" placeholder="Username..." class=" myForm-control" id="form-username">
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="form-password">Password</label>
+											<input required type="password" name="password" placeholder="Password..." class=" myForm-control" id="form-password">
+										</div>
+										<input required type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+										<button type="submit" class="myButton btn btn-success">Sign in!</button>
+									</form>
+								</div>
+							</div>
+							<br>
 
-    <form class="form-horizontal" action="/login" method="post">
+							<!--      	<div class="social-login">
+                                          <h3>...or login with:</h3>
+                                          <div class="social-login-buttons">
+                                              <a class="btn btn-link-2" href="#">
+                                                  <i class="fa fa-facebook"></i> Facebook
+                                              </a>
+                                              <a class="btn btn-link-2" href="#">
+                                                  <i class="fa fa-twitter"></i> Twitter
+                                              </a>
+                                              <a class="btn btn-link-2" href="#">
+                                                  <i class="fa fa-google-plus"></i> Google Plus
+                                              </a>
+                                          </div>
 
-        <div class="form-group">
-            <label class="col-md-5 control-label">Username</label>
-            <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <input  name="userName" placeholder="Username" class="myForm-control"  type="text">
+                                      </div> 	-->
+
+						</div>
+						<div class="col-sm-3">
+						</div>
+
+					</div>
+
+					<div class="row well">
+						<div class="col-sm-3">
+						</div>
+                        	
+                        <div class="col-sm-6">
+                        	
+                        	<div class="form-box">
+                        		<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h2>Don't have an Account? Sign up now</h2>
+	                            		<p><br></p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-pencil"></i>
+	                        		</div>
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form role="form" action="/registration2" method="post" class="registration-form">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">First name</label>
+				                        	<input required type="text" name="firstName" placeholder="First name..." class="myLightForm-control" id="form-first-name">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-last-name">Last name</label>
+				                        	<input required type="text" name="lastName" placeholder="Last name..." class="myLightForm-control" id="form-last-name">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-email">Email</label>
+				                        	<input required type="email" name="email" placeholder="Email..." class="myLightForm-control" id="form-email">
+				                        </div>
+										<div class="form-group">
+											<label class="sr-only">Username</label>
+											<input type="text" name="userName" placeholder="Username..." class="myLightForm-control" >
+										</div>
+										<div class="form-group">
+											<label class="sr-only">Password</label>
+											<input required type="password" name="password" placeholder="Password..." class="myLightForm-control" >
+										</div>
+				                      <!--  <div class="form-group">
+				                        	<label class="sr-only" for="form-about-yourself">About yourself</label>
+				                        	<textarea name="form-about-yourself" placeholder="About yourself..." 
+				                        				class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+				                        </div>
+				                        -->
+										<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				                        <button type="submit" class="myButton btn btn-success">Sign up!</button>
+				                    </form>
+			                    </div>
+                        	</div>
+                        	
+                        </div>
+						<div class="col-sm-3">
+						</div>
+                    </div>
+                    
                 </div>
             </div>
+            
         </div>
 
-        <div class="form-group">
-            <label class="col-md-5 control-label">Password</label>
-            <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <input  name="password" placeholder="Password" class="myForm-control"  type="password">
-                </div>
-            </div>
-        </div>
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+        			
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        			<!--	<p>Made by Anli Zaimi at <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>
+        					having a lot of fun. <i class="fa fa-smile-o"></i></p> -->
+        			</div>
+        			
+        		</div>
+        	</div>
+        </footer>
 
+        <!-- Javascript -->
+    </body>
 
-
-
-
-        <!-- Text input-->
-        <br>
-        <div class="form-group">
-            <label class="col-md-5 control-label"></label>
-            <div class="col-md-3 inputGroupContainer">
-                <div class="input-group">
-                    <input  name="remember" type="checkbox">
-                    <label>Remember me</label>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label class="col-md-5 control-label"></label>
-            <div class="col-md-3 inputGroupContainer">
-                <div class="input-group">
-                    <input  class="myButton  btn btn-success"  type="Submit" value="Sign In">
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-    </form>
-    <br>
-    <div class="row">
-        <label class="col-md-4 control-label"></label>
-        <span class="col-md-4">
-            <label>Don't have an account?</label>&nbsp<a  href="/registration">Sign Up</a>
-        </span>
-    </div>
-
-</div>
-
-</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-
-
-    <form class="well form-horizontal" action="#" method="post">
-        <div class="form-group">
-            <label class="col-md-4 control-label">Event Name</label>
-            <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-king"></i></span>
-                    <input  name="eventName" placeholder="Event Name" class="form-control"  type="text">
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label class="col-md-4 control-label">Event Type</label>
-            <div class="col-md-4 selectContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                    <select name="eventType" class="form-control selectpicker" >
-                        <option >Personal</option>
-                        <option>Professional</option>
-                        <option>Conference</option>
-                        <option>Grand Event</option>
-
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-4 control-label">Event Description</label>
-            <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                    <textarea class="form-control" name="description" placeholder="Event Description"></textarea>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label class="col-md-4 control-label" >Event Time</label>
-            <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input name="eventDate" placeholder="DD" class="form-control"  type="text">
-                    <input name="eventMonth" placeholder="MM" class="form-control"  type="text">
-                    <input name="eventYear" placeholder="YYYY" class="form-control"  type="text"><br>
-                    <input name="eventHour" placeholder="HH" class="form-control"  type="text">
-                    <input name="eventMinute" placeholder="MI" class="form-control"  type="text">
-                </div>
-            </div>
-        </div>
-
-        <!-- Text input--
-<div class="form-group">
-    <label class="col-md-4 control-label">Country</label>
-    <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input name="country" placeholder="country" class="form-control"  type="text">
-        </div>
-    </div>
-</div>
-
-
-<!-- Text input--
-
-<div class="form-group">
-    <label class="col-md-4 control-label">City</label>
-    <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input name="city" placeholder="city" class="form-control" type="text">
-        </div>
-    </div>
-</div>
-
-<!-- Text input--
-
-<div class="form-group">
-    <label class="col-md-4 control-label">Road No.</label>
-    <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
-            <input name="roadNo" placeholder="e.g. 12/A" class="form-control" type="text">
-        </div>
-    </div>
-</div>
-
-<!-- Text input--
-
-<div class="form-group">
-    <label class="col-md-4 control-label">Building No.</label>
-    <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input name="buildingNo" placeholder="e.g. 936/A" class="form-control"  type="text">
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-md-4 control-label"></label>
-    <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
-            <input  class="form-control btn btn-warning"  type="Submit" value="Create Event">
-        </div>
-    </div>
-</div>
-
-
-</form>
-
-
-
--->

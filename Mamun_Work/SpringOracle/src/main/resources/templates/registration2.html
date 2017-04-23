@@ -1,95 +1,157 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head th:replace="common/header :: common-header">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" th:src="@{/webjars/bootstrap/3.3.7/bootstrap-theme.min.css}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>
-    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/bootstrap.min.js}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script
-            src="https://code.jquery.com/jquery-3.2.0.min.js"
-            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
-            crossorigin="anonymous"
-            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
-
-    <script src="http://cdn.jsdelivr.net/webjars/angularjs/1.6.2/angular.min.js"
-            th:src="@{/webjars/angularjs/1.6.2/angular.min.js}"></script>
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-
-        function selectGender(gender){
-
-            var genderM = document.getElementById("genderM");
-            var genderF = document.getElementById("genderF");
-            var genderO = document.getElementById("genderO");
-
-            if (gender == "M"){
-                genderM.style.backgroundColor = "#000";
-                genderM.style.color = "#fff";
-
-                genderF.style.backgroundColor = "#fff";
-                genderF.style.color = "#000";
-                genderO.style.backgroundColor = "#fff";
-                genderO.style.color = "#000";
-            }
-            else if(gender=="F"){
-                genderF.style.backgroundColor = "#000";
-                genderF.style.color = "#fff";
-
-                genderM.style.backgroundColor = "#fff";
-                genderM.style.color = "#000";
-                genderO.style.backgroundColor = "#fff";
-                genderO.style.color = "#000";
-
-            }
-            else {
-                genderO.style.backgroundColor = "#000";
-                genderO.style.color = "#fff";
-
-                genderM.style.backgroundColor = "#fff";
-                genderM.style.color = "#000";
-                genderF.style.backgroundColor = "#fff";
-                genderF.style.color = "#000";
-            }
-
-        }
-    </script>
-
+    <title>Registration</title>
 </head>
 
 
 <body>
+<!-- Top content -->
+<div class="top-content">
 
-<div class="container well">
+    <div class="inner-bg">
+        <div class="container">
+
+            <div class="row well">
+                <div class="col-sm-6">
+                    <div >
+                        <img src="../images/24School_logo.png" class="center-left img-responsive img-circle" width="200" height="auto" >
+                    </div>
+                    <!--  <div class="row">
+                          <div class="col-sm-8 col-sm-offset-2 text">
+                              <h1><strong>Bootstrap</strong> Login &amp; Register Forms</h1>
+                              <div class="description">
+                                  <p>
+                                      This is a free responsive <strong>"login and register forms"</strong> template made with Bootstrap.
+                                      Download it on <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>,
+                                      customize and use it as you like!
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      -->
+                </div>
+
+
+                <div class="col-sm-6">
+                </div>
+
+            </div>
+
+            <div class="row well">
+                <div class="col-sm-3">
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h2>Please complete your profile</h2>
+                                <p></p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" action="/completeProfile" method="post" class="registration-form">
+                                <div class="form-group">
+                                    <br>
+                                    <label>Birth Date: </label>
+                                    <input required name="birthDate" placeholder="MM/DD/YYYY" id="datepicker" class="myLightForm-control"  type="text"><!-- readonly="readonly"-->
+                                </div>
+                                <div class="form-Group">
+                                    <label>Gender: </label><br>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn myWhiteBtn" id="genderM">
+                                            <input required type="radio" name="gender" value="M" onclick="selectGender('M')">Male
+                                        </label>
+                                        <label class="btn myWhiteBtn" id="genderF">
+                                            <input required type="radio" name="gender" value="F" onclick="selectGender('F')">Female
+                                        </label>
+                                        <label class="btn myWhiteBtn" id="genderO">
+                                            <input required type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
+                                        </label>
+                                    </div>
+                                </div>
+                                <div><br></div>
+                                <div class="form-group">
+                                    <label class="sr-only">Country</label>
+                                    <input name="country" placeholder="Country" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">State</label>
+                                    <input name="state" placeholder="State" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">City</label>
+                                    <input name="city" placeholder="City" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Zip Code</label>
+                                    <input  name="zipCode" placeholder="Zip code" class="myLightForm-control"  type="number">
+                                </div>
+
+                                <!--  <div class="form-group">
+                                      <label class="sr-only" for="form-about-yourself">About yourself</label>
+                                      <textarea name="form-about-yourself" placeholder="About yourself..."
+                                                  class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                                  </div>
+                                  -->
+                                <input type="hidden" th:name="userName" th:value="${name}"/>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                <button type="submit" class="myButton btn btn-success">Done</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border"></div>
+                <!--	<p>Made by Anli Zaimi at <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>
+                        having a lot of fun. <i class="fa fa-smile-o"></i></p> -->
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<!-- Javascript -->
+</body>
+
+<!--
+<div class="container">
 
 
     <div class="center-block">
         <img src="../images/24School_logo.png" class="img-circle img-responsive center-block" th:width="300" th:height="auto"/>
     </div>
-    <div class="center-block"><h2>Please complete your profile</h2></div><br>
+    <div class="center-block"><h2>Account Created. Please complete your profile</h2></div><br>
 
-    <form class="form-horizontal" action="/home" method="post">
+    <form class="form-horizontal" action="/completeProfile" method="post">
 
         <div class="form-group">
             <label class="col-md-5 control-label">Birthdate: </label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
-                    <input  name="birthDate" placeholder="MM/DD/YYYY" id="datepicker" class="myForm-control"  type="text">
+                    <input required name="birthDate" placeholder="MM/DD/YYYY" id="datepicker" class="myLightForm-control"  type="text"><!-- readonly="readonly"--
                 </div>
             </div>
         </div>
@@ -99,16 +161,16 @@
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn myBlackBtn" id="genderM">
-                            <input type="radio" name="gender" value="M" onclick="selectGender('M')">Male
+                        <label class="btn myWhiteBtn" id="genderM">
+                            <input required type="radio" name="gender" value="M" onclick="selectGender('M')">Male
                         </label>
                         <label class="btn myWhiteBtn" id="genderF">
-                            <input type="radio" name="gender" value="F" onclick="selectGender('F')">Female
+                            <input required type="radio" name="gender" value="F" onclick="selectGender('F')">Female
                         </label>
                         <label class="btn myWhiteBtn" id="genderO">
-                            <input type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
+                            <input required type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
                         </label>
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,7 +179,7 @@
             <label class="col-md-5 control-label">Country: </label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
-                    <input  name="country" placeholder="Country" class="myForm-control"  type="text">
+                    <input name="country" placeholder="Country" class="myLightForm-control"  type="text">
                 </div>
             </div>
         </div>
@@ -127,7 +189,7 @@
             <label class="col-md-5 control-label">State: </label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
-                    <input  name="state" placeholder="State" class="myForm-control"  type="text">
+                    <input name="state" placeholder="State" class="myLightForm-control"  type="text">
                 </div>
             </div>
         </div>
@@ -136,7 +198,7 @@
             <label class="col-md-5 control-label">City: </label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
-                    <input  name="city" placeholder="City" class="myForm-control"  type="text">
+                    <input name="city" placeholder="City" class="myLightForm-control"  type="text">
                 </div>
             </div>
         </div>
@@ -145,7 +207,7 @@
             <label class="col-md-5 control-label">Zip code: </label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
-                    <input  name="zipCode" placeholder="Zip code" class="myForm-control"  type="number">
+                    <input  name="zipCode" placeholder="Zip code" class="myLightForm-control"  type="number">
                 </div>
             </div>
         </div>
@@ -153,7 +215,7 @@
 
 
 
-        <!-- Text input-->
+        <!-- Text input--
 
         <div class="form-group">
             <label class="col-md-5 control-label"></label>
@@ -164,13 +226,12 @@
             </div>
         </div>
 
-
-
-
+        <input type="hidden" th:name="userName" th:value="${name}"/>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
     </form>
 </div>
 
-</body>
+-->
+
 </html>
