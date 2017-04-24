@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="common/header :: common-header">
+
+<head th:include="common/header :: common-header" ></head>
+<head>
+	<title>24 School</title>
+	<!-- Latest compiled and minified CSS -->
+</head>
 
   <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -153,21 +158,26 @@
         </div>
 
         <!-- Footer -->
-        <footer>
+      <!--  <footer>
         	<div class="container">
         		<div class="row">
         			
         			<div class="col-sm-8 col-sm-offset-2">
         				<div class="footer-border"></div>
         			<!--	<p>Made by Anli Zaimi at <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>
-        					having a lot of fun. <i class="fa fa-smile-o"></i></p> -->
+        					having a lot of fun. <i class="fa fa-smile-o"></i></p> --
         			</div>
         			
         		</div>
         	</div>
         </footer>
+        -->
 
         <!-- Javascript -->
-    </body>
+
+		<div th:include="common/navbar :: common-footer" >
+		</div>
+
+	</body>
 
 </html>

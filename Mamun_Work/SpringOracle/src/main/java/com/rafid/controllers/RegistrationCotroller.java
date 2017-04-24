@@ -1,6 +1,6 @@
 package com.rafid.controllers;
 
-import com.mamun.DateUtil;
+import com.mamun.util.DateUtil;
 import com.rafid.models.Users;
 import com.rafid.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.util.DateUtils;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
