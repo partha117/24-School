@@ -46,8 +46,8 @@ public class Users implements Serializable{
     @Column(name = "GIT_ACCOUNT_ID", columnDefinition = "VARCHAR(100)")
     String gitUserId;
 
-    //@Lob
-    //private byte[] profilePic;
+    @Lob
+    private byte[] profilePic;
 
     public Users(){
 
@@ -75,7 +75,7 @@ public class Users implements Serializable{
         this.city = city;
         this.zipCode = zipCode;
         this.userId = userId;
-        //this.profilePic = profilePic;
+        this.profilePic = profilePic;
     }
 
     public Users(String userName, String firstName, String lastName, Date birthDate, String email, String password, String gender, String profession, String country, String state, String city, String zipCode) {
@@ -206,9 +206,9 @@ public class Users implements Serializable{
         this.rating = rating;
     }
 
-   /* public byte[] getProfilePic() {return profilePic;}
+    public byte[] getProfilePic() {return profilePic;}
 
     public void setProfilePic(byte[] profilePic) {
         this.profilePic = profilePic;
-    }*/
+    }
 }

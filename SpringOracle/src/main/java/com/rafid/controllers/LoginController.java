@@ -20,17 +20,19 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String loginPage() {
-        return "login";
-    }
+        return "index";
+    }   ///mamun changed this line <someone set it login, but there is no page named login.html
 
     @PostMapping("/login")
-    public String loginCheck(HttpSession session, @RequestParam("email") String email, @RequestParam("password") String password) {
-        List<Users> result = userRepository.findByEmailAndPassword(email,password);
+    public String loginCheck(HttpSession session, @RequestParam("userName") String userName, @RequestParam("password") String password) {
+        List<Users> result = userRepository.findByUserNameAndPassword(userName,password);
+
         if (result.isEmpty()){
-            return "redirect:/login";
+            return "redirect:/";
         }
         else {
             session.setAttribute("username", result.get(0).getUserName());
+            System.out.println("User found with username: "+userName+" and password: "+password);
             return "redirect:/home";
         }
     }

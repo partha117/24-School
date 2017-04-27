@@ -12,7 +12,7 @@ public class IndexController {
     @Autowired
     @RequestMapping("/")
     String index() {
-        return "index";
+        return "redirect:/home";  ///changed it- mamun, if session not empty, index redirects to the home page
 
     }
 }

@@ -5,15 +5,30 @@
     width: 100%;
     height: 34px;
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: normal;
     line-height: 1.42857143;
-    color: #fff;
-    background-color: #101010;
+    color: #000;
+    background-color: #f5f5f5;
     background-image: none;
     border: 2px solid #000;
     border-radius:1000px;
 }
 
+.myLightForm-control{
+    display: inherit;
+    width: 100%;
+    height: 45px;
+    padding: 6px 6px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #f5f5f5;
+    background-image: none;
+    border: 2px solid #000;
+    border-radius:4px;
+}
 
 .myBg-white{
     background-color: white;
@@ -26,7 +41,7 @@
 }
 .myButton{
     display: inherit;
-    width: 100%;
+    width: 100px;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -90,4 +105,18 @@
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+
+.myNavButton{
+    width: 100%;
+    height: 50px;
+
+    padding: 6px 6px;
+    font-size: 25px;
+
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #cccccc;
+    border: 2px solid #000;
 }
