@@ -5,31 +5,22 @@
 <head>
 	<title>24 School</title>
 	<!-- Latest compiled and minified CSS -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!---newly added--------- for the new login page... - Mamun---------->
+
+	<!-- CSS-->
 </head>
 
-  <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title> 24School &amp; </title>
-
-
-		<!---newly added--------- for the new login page... - Mamun---------->
-
-        <!-- CSS-->
-
-    </head>
-
-    <body>
+<body>
         <!-- Top content -->
-        <div class="top-content">
-        	
-            <div class="inner-bg">
-                <div class="container">
-
-					<div class="row well">
+					<div class="light-box wide-box">
+					<div class="row">
 						<div class="col-sm-6">
 							<div >
-								<img src="../images/24School_logo.png" class="center-left img-responsive img-circle" width="200" height="auto" >
+								<img th:src="@{/images/24School_logo.png}" class="center-left img-responsive img-circle" width="200" height="auto" >
 							</div>
                   <!--  <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
@@ -96,8 +87,11 @@
 						</div>
 
 					</div>
+					</div>
 
-					<div class="row well">
+					<div class="light-box wide-box">
+
+					<div class="row">
 						<div class="col-sm-3">
 						</div>
                         	
@@ -123,13 +117,17 @@
 				                        	<label class="sr-only" for="form-last-name">Last name</label>
 				                        	<input required type="text" name="lastName" placeholder="Last name..." class="myLightForm-control" id="form-last-name">
 				                        </div>
+										<div class="form-group">
+											<label>Birth Date: </label>
+											<input required name="birthDate" placeholder="MM/DD/YYYY"  class="myLightForm-control"  type="date"><!-- readonly="readonly"-->
+										</div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-email">Email</label>
 				                        	<input required type="email" name="email" placeholder="Email..." class="myLightForm-control" id="form-email">
 				                        </div>
 										<div class="form-group">
 											<label class="sr-only">Username</label>
-											<input type="text" name="userName" placeholder="Username..." class="myLightForm-control" >
+											<input required type="text" name="userName" placeholder="Username..." class="myLightForm-control" >
 										</div>
 										<div class="form-group">
 											<label class="sr-only">Password</label>
@@ -151,11 +149,9 @@
 						<div class="col-sm-3">
 						</div>
                     </div>
-                    
-                </div>
-            </div>
-            
-        </div>
+					</div>
+
+
 
         <!-- Footer -->
       <!--  <footer>
@@ -178,6 +174,6 @@
 		<div th:include="common/navbar :: common-footer" >
 		</div>
 
-	</body>
+</body>
 
 </html>

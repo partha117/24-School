@@ -23,7 +23,7 @@ public class Users implements Serializable{
     private String lastName;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(nullable = true)                                                     ///changed it, date of birth can be null-------
+    @Column(nullable = false)                                                     ///changed it, date of birth can be null-------
     private Date birthDate;
     @Column(unique = true, columnDefinition = "VARCHAR(200)", nullable = false) ///changed it-mamun... email should be unique
     private String email;
@@ -62,11 +62,12 @@ public class Users implements Serializable{
     }
 
 
-    public Users(long userId, String userName, String firstName, String lastName, String email, String password) {
+    public Users(long userId, String userName, String firstName, String lastName,Date birthDate, String email, String password) {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate=birthDate;
         this.email = email;
         this.password = password;
     }

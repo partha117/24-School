@@ -39,14 +39,16 @@ public class RegistrationCotroller {
     }
 
     @PostMapping("/registration2")
-    public String registrationHalfDone(@ModelAttribute Users users, Model model){
+    public String registrationHalfDone(HttpSession session, @ModelAttribute Users users, Model model){
         userRepository.save(users);
         model.addAttribute("name", users.getUserName());
+        session.setAttribute("username", users.getUserName());
+
         return "registration2";
     }
 
     @PostMapping("/completeProfile")
-    public String completeProfile(@RequestParam("birthDate") String birthDate, @RequestParam("gender") String gender,
+    public String completeProfile(@RequestParam("profession") String profession, @RequestParam("gender") String gender,
                                   @RequestParam("country") String country, @RequestParam("state") String state,
                                   @RequestParam("city") String city, @RequestParam("zipCode") String zipCode,
                                   @RequestParam("userName") String userName) { ///hidden input username------------
@@ -54,13 +56,13 @@ public class RegistrationCotroller {
 
         System.out.println("Completing profile of "+userName);
         List<Users> users = userRepository.findByUserName(userName);
-        System.out.println(birthDate+" "+gender+" "+country+" "+state+" "+city+" "+zipCode);
+        System.out.println(profession+" "+gender+" "+country+" "+state+" "+city+" "+zipCode);
 
         if(!users.isEmpty()){
             System.out.println("got you "+userName);
            Users user = users.get(0);
 
-           user.setBirthDate(DateUtil.DateFromString(birthDate, "MM/DD/YYYY"));
+            user.setProfession(profession);
            user.setGender(gender);
            user.setCountry(country);
             user.setState(state);
