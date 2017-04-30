@@ -33,7 +33,7 @@ import org.springframework.web.servlet.view.JstlView;
 public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 
     // Bean name must be "multipartResolver", by default Spring uses method name as bean name.
-  //  @Bean
+   //@Bean
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
@@ -45,11 +45,11 @@ public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
         return new StandardServletMultipartResolver();
     }*/
 
-    //@Bean
+//    @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/views/jsp/");
+       viewResolver.setPrefix("/WEB-INF/views/jsp/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }

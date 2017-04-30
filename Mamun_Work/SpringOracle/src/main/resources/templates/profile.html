@@ -26,8 +26,11 @@
 <body>
 <div th:include="common/navbar :: common-navbar"></div>
 
-<div class="container">
+<div>
+    <p id="log"> </p>
+</div>
 
+<div class="container">
     <div class="row">
         <div class="box">
             <div class="col-lg-12">
@@ -36,7 +39,22 @@
                     <strong>Username</strong>
                 </h2>
                 <hr>
-                <img class="img-responsive img-border img-left" th:src="@{/images/intro-pic.jpg}" alt="">
+                <div>
+
+                    <img id="propic" class="img-responsive img-border img-left" th:src="@{/images/empty-profile-image.jpg}" alt=""
+                         width="200" height="200">
+
+                    <form id="file-form" method="post" action="/uploadPropic" enctype="multipart/form-data">
+                        <label for="file-upload"> Select a file to upload (Max 1MB)</label>
+                        <input required type="file" name="file" value="file-upload" id="file-upload">
+
+                        <input type="hidden" name="dummy" value="habijabi">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <Button type="submit" id="upload-button">Upload</Button>
+                    </form>
+
+
+                </div>
                 <hr class="visible-xs">
                 <p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>
                 <p>A huge thanks to <a href="http://join.deathtothestockphoto.com/" target="_blank">Death to the Stock Photo</a> for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>
@@ -69,6 +87,79 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script th:src="@{/js/bootstrap.min.js}"></script>
+
+<script>
+    function downloadPropic() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.response != "")
+                    document.getElementById("propic").src = "data:image/jpg;base64," + this.response;
+            }
+        };
+        xhttp.open("GET", "/getPropic", true);
+        xhttp.send();
+    }
+
+    downloadPropic();
+
+//for uploadPropic
+    var form = document.getElementById('file-form');
+    var uploadButton = document.getElementById('upload-button');
+
+
+    // HTML file input, chosen by user
+    form.onsubmit = function(event) {
+
+        var formData = new FormData(form);
+        event.preventDefault();
+
+        // Update button text.
+        uploadButton.innerHTML = 'Uploading...';
+
+        // The rest of the code will go here...
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+
+            uploadButton.innerHTML='Upload';
+            clearFileInput('file-upload');
+
+            if (this.readyState == 4 && this.status == 200) {
+
+                if(this.response=="success")
+                    downloadPropic();
+            }
+        };
+      //  form.submit();
+        request.open("POST", "/uploadPropic");
+        request.setRequestHeader("enctype", "multipart/form-data");
+        request.send(formData);
+    }
+
+
+
+    function clearFileInput(id)
+    {
+        var oldInput = document.getElementById(id);
+
+        var newInput = document.createElement("input");
+
+        newInput.type = "file";
+        newInput.id = oldInput.id;
+        newInput.name = oldInput.name;
+        newInput.className = oldInput.className;
+        newInput.style.cssText = oldInput.style.cssText;
+        newInput.required = oldInput.required;
+        // TODO: copy any other relevant attributes
+
+        oldInput.parentNode.replaceChild(newInput, oldInput);
+    }
+
+
+
+
+</script>
+
 </body>
 
 </html>

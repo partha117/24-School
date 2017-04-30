@@ -21,7 +21,7 @@ public class MyWebInitializer extends
 
    // @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{//SpringWebMvcConfig.class  --mamun commented this out to disable config
+        return new Class[]{//SpringWebMvcConfig.class  //--mamun commented this out to disable config
                  };
     }
 
