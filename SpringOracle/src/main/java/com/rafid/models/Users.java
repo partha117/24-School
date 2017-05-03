@@ -23,7 +23,7 @@ public class Users implements Serializable{
     private String lastName;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(nullable = false)
+
     private Date birthDate;
     @Column(columnDefinition = "VARCHAR(200)")
     private String email;

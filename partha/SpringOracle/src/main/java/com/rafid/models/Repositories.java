@@ -24,6 +24,14 @@ public class Repositories implements Serializable {
     private Users users;
 
 
+
+    public Repositories(String repositoryName, String repositoryLink, Course course, Users users) {
+        this.repositoryName = repositoryName;
+        this.repositoryLink = repositoryLink;
+        this.course = course;
+        this.users = users;
+    }
+
     public Course getCourse() {
         return course;
     }

@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by ASUS on 19-Apr-17.
@@ -29,6 +28,15 @@ public class Notices implements Serializable{
     @ManyToOne(targetEntity = Users.class,fetch = FetchType.EAGER)
     // @JoinColumn(name = "USER_ID")
     private Users users;
+
+    public Notices(int viewNumber, String noticeText, String topic, Date noticeDate, Course course, Users users) {
+        this.viewNumber = viewNumber;
+        this.noticeText = noticeText;
+        this.topic = topic;
+        this.noticeDate = noticeDate;
+        this.course = course;
+        this.users = users;
+    }
 
     public Notices(int viewNumber, String noticeText, String topic, Date noticeDate) {
         this.viewNumber = viewNumber;

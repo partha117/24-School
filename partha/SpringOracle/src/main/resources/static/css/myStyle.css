@@ -1,1 +1,143 @@
 .myclass{width:900px; height:auto; margin:auto;}
+.logo-top-margin{margin-top: 100px;}
+.myForm-control{
+    display: inherit;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #f5f5f5;
+    background-image: none;
+    border: 2px solid #000;
+    border-radius:1000px;
+}
+
+.myLightForm-control{
+    display: inherit;
+    width: 100%;
+    height: 45px;
+    padding: 6px 6px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #f5f5f5;
+    background-image: none;
+    border: 2px solid #000;
+    border-radius:4px;
+}
+
+.myBg-white{
+    background-color: white;
+}
+.myBg-black{
+    background-color: black;
+}
+.myBg-cyan{
+    background-color: cyan;
+}
+.myButton{
+    display: inherit;
+    width: 100px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #2e6da4;
+    background-image: none;
+    border: 2px solid #000;
+    border-radius:1000px;
+
+}
+
+.myBlueBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #2e6da4;
+    border: 2px solid #000;
+}
+.myGreenBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: green;
+    border: 2px solid #000;
+}
+.myWhiteBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+}
+.myBlackBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #000;
+    border: 2px solid #000;
+}
+
+.myPinkBtn{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #e4b9b9;
+    border: 2px solid #000;
+}
+
+.myWell {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #101010;
+    border: 2px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+
+.myNavButton{
+    width: 100%;
+    height: 50px;
+
+    padding: 6px 6px;
+    font-size: 25px;
+
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #cccccc;
+    border: 2px solid #000;
+}
+.spacer5 { height: 5px; width: 100%;  }
+.spacer10 { height: 10px; width: 100%;  }
+.spacer15 { height: 15px; width: 100%;  }
+.spacer20 { height: 20px; width: 100%;  }
+.spacer25 { height: 25px; width: 100%;  }
+.spacer30 { height: 30px; width: 100%;  }
+.spacer35 { height: 35px; width: 100%; ; }
+.spacer40 { height: 40px; width: 100%;  }
+.spacer45 { height: 45px; width: 100%;  }
+.spacer50 { height: 50px; width: 100%;  }
+.spacer100 { height: 100px; width: 100%;  }
+.spacer200 { height: 200px; width: 100%;  }
+.textButton {
+    vertical-align:bottom;
+    overflow:visible;
+    font-size:1em;
+    display:inline;
+    margin:0; padding:0; border:0;
+    color:black;
+    cursor:pointer;
+}

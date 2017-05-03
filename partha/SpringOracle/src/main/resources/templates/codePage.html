@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body onload="prettyPrint()">
+<pre th:class="'prettyprint'+' '+'lang-'+${lang}+' '+'linenums'" >
+    <code th:text="${code_data}">
+
+    </code>
+</pre>
+</body>
+</html>

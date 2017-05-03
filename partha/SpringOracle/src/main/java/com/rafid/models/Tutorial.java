@@ -1,7 +1,5 @@
 package com.rafid.models;
 
-import oracle.sql.BLOB;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -27,6 +25,12 @@ public class Tutorial implements Serializable {
     // @JoinColumn(name = "USER_ID")
     private Users users;
 
+    public Tutorial(String tutorialsName, String tutorialsSubject, Course course, Users users) {
+        this.tutorialsName = tutorialsName;
+        this.tutorialsSubject = tutorialsSubject;
+        this.course = course;
+        this.users = users;
+    }
 
     public Tutorial(Long tutorialsId, String tutorialsName, String tutorialsSubject, byte[] tutorialData) {
         this.tutorialsId = tutorialsId;

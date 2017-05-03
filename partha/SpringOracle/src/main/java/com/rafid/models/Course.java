@@ -29,6 +29,10 @@ public class Course implements Serializable{
     @ManyToMany(targetEntity = Users.class,fetch = FetchType.EAGER)
     private Set<Users> instructors=new HashSet<>(0);
 
+    public Course(String courseName, String subject) {
+        this.courseName = courseName;
+        this.subject = subject;
+    }
 
     public Course(Long courseId, String courseName, String subject) {
         this.courseId = courseId;

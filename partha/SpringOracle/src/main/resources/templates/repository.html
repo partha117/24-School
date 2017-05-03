@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header">
+    <meta charset="UTF-8">
+    <title>Project</title>
+</head>
+<!--<meta th:name="_csrf" th:content="${_csrf.token}"/>
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/> -->
+<body class="container-fluid ">
+
+
+<div class="spacer200">
+
+</div>
+<div class="col-md-5 col-md-offset-3">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Repositories</th>
+            <th>Last Commit by</th>
+            <th>Commit message</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="instance : ${folder_list}">
+
+            <tr>
+                <form id="form" action="/repoTraverse" method="post">
+                    <td>
+                        <input  class="textButton" type="submit"  name="selects" th:value="${instance.getName()}">
+
+                        <!--  <td th:text="${instance.getLastCommitter()}"></td>createPost('/repoTraverse', {currentPath:${currentPath},select:${instance.getName()}})
+                        <td th:text="${instance.getLastMessage()}"></td> -->
+                        <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    </td>
+                </form>
+            </tr>
+
+        </th:block>
+        </tbody>
+    </table>
+
+
+
+</div>
+<div>
+    <div class="col-md-7">
+
+    </div>
+</div>
+
+</body>
+</html>
