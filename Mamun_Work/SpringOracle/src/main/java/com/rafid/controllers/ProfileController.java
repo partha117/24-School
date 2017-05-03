@@ -54,6 +54,34 @@ public class ProfileController {
         return "";
     }
 
+    @RequestMapping("/getProfileInfo")
+    public @ResponseBody
+    String getProfileInfo(HttpSession session){
+
+        System.out.println("got profile info download request");
+        if(session.getAttribute("username")!=null){
+            List<Users> users = userRepository.findByUserName(session.getAttribute("username").toString());
+            if(!users.isEmpty()){
+                Users user = users.get(0);
+                String values = user.getFirstName()+" "+user.getLastName()+":"+
+                        user.getGender()+":"+
+                        user.getBirthDate()+":"+
+                        user.getProfession()+":"+
+                        user.getCountry()+":"+
+                        user.getState()+":"+
+                        user.getCity()+":"+
+                        user.getZipCode()+":"+
+                        user.getUserName()+":"+
+                        user.getEmail()+":"+
+                        user.getGitUserId();
+                System.out.println("Returning "+values);
+                return values;
+            }
+        }
+
+        return "";
+    }
+
 
 
 
