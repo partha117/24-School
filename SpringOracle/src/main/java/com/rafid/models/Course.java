@@ -3,6 +3,7 @@ package com.rafid.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -14,10 +15,12 @@ public class Course implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COURSE_ID",unique = true,nullable =false)
     private Long courseId;
-    @Column(length = 30,nullable = false)
+    @Column(length = 300,nullable = false)
     private String courseName;
-    @Column(length = 30,nullable = false)
+    @Column(length = 300,nullable = false)
     private String  subject;
+    @Column(columnDefinition = "VARCHAR2(1000)")
+    private String courseIntro;
   //  @OneToMany(targetEntity = Notices.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
    // private Set<Notices>notices=new HashSet<>(0);
    // @OneToMany(targetEntity = Tutorial.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -25,10 +28,13 @@ public class Course implements Serializable{
   //  @OneToMany(targetEntity = Repositories.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
    // private Set<Repositories>repositories=new HashSet<>(0);
     @ManyToMany(targetEntity = Users.class,fetch = FetchType.EAGER)
-    private Set<Users> usersSet=new HashSet<>(0);
+    private Set<Users> usersSet=new HashSet<Users>(0);
     @ManyToMany(targetEntity = Users.class,fetch = FetchType.EAGER)
-    private Set<Users> instructors=new HashSet<>(0);
+    private Set<Users> instructors=new HashSet<Users>(0);
 
+    public Course(){
+
+    }
     public Course(String courseName, String subject) {
         this.courseName = courseName;
         this.subject = subject;
@@ -38,6 +44,35 @@ public class Course implements Serializable{
         this.courseId = courseId;
         this.courseName = courseName;
         this.subject = subject;
+    }
+
+    public Course(String courseName, String subject, String courseIntro) {
+        this.courseName = courseName;
+        this.subject = subject;
+        this.courseIntro = courseIntro;
+    }
+
+    public boolean isUserInUsersSet(String userName){
+
+        for(Users us: usersSet){
+            if(us.getUserName().equals(userName)) return true;
+        }
+        return false;
+    }
+
+    public boolean isUserInInstructors(String userName){
+        for(Users us: instructors){
+            if(us.getUserName().equals(userName)) return true;
+        }
+        return false;
+    }
+
+    public String getCourseIntro() {
+        return courseIntro;
+    }
+
+    public void setCourseIntro(String courseIntro) {
+        this.courseIntro = courseIntro;
     }
 
     /*public Set<Repositories> getRepositories() {

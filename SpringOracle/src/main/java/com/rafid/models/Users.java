@@ -23,7 +23,7 @@ public class Users implements Serializable{
     private String lastName;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-
+    @Column(nullable = true)
     private Date birthDate;
     @Column(columnDefinition = "VARCHAR(200)")
     private String email;
@@ -45,6 +45,8 @@ public class Users implements Serializable{
     int rating;
     @Column(name = "GIT_ACCOUNT_ID", columnDefinition = "VARCHAR(100)")
     String gitUserId;
+
+    //@Column(name="GIT_PASSWORD")
 
     @Lob
     private byte[] profilePic;

@@ -3,6 +3,7 @@ package com.rafid.controllers;
 
 import com.rafid.models.Users;
 import com.rafid.repositories.UserRepository;
+import com.rafid.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class LoginController {
             return "redirect:/";
         }
         else {
-            session.setAttribute("username", result.get(0).getUserName());
+            session.setAttribute(Constants.user_name, result.get(0).getUserName());
             System.out.println("User found with username: "+userName+" and password: "+password);
             return "redirect:/home";
         }
@@ -40,7 +41,7 @@ public class LoginController {
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("username");
+        session.removeAttribute(Constants.user_name);
         return "redirect:/login";
     }
 

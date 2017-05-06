@@ -15,10 +15,11 @@ public class Notices implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long noticeId;
     private int viewNumber;
-    @Column(nullable = false)
+    @Column(length = 1000, nullable = false)
     private String noticeText;
-    @Column(length = 20,nullable = false)
+    @Column(length = 300,nullable = false)
     private String topic;
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private Date noticeDate;
@@ -28,6 +29,16 @@ public class Notices implements Serializable{
     @ManyToOne(targetEntity = Users.class,fetch = FetchType.EAGER)
     // @JoinColumn(name = "USER_ID")
     private Users users;
+    public Notices(){
+
+    }
+    public Notices(String noticeText, String topic, Date noticeDate, Course course, Users users) {
+        this.noticeText = noticeText;
+        this.topic = topic;
+        this.noticeDate = noticeDate;
+        this.course = course;
+        this.users = users;
+    }
 
     public Notices(int viewNumber, String noticeText, String topic, Date noticeDate, Course course, Users users) {
         this.viewNumber = viewNumber;

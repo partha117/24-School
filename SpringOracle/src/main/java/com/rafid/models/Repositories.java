@@ -23,7 +23,9 @@ public class Repositories implements Serializable {
    // @JoinColumn(name = "USER_ID")
     private Users users;
 
+    public Repositories(){
 
+    }
 
     public Repositories(String repositoryName, String repositoryLink, Course course, Users users) {
         this.repositoryName = repositoryName;
