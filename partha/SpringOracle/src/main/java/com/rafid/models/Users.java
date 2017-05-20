@@ -23,6 +23,7 @@ public class Users implements Serializable{
     private String lastName;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
     private Date birthDate;
     @Column(columnDefinition = "VARCHAR(200)")
     private String email;
@@ -219,5 +220,18 @@ public class Users implements Serializable{
 
     public void setProfilePic(byte[] profilePic) {
         this.profilePic = profilePic;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof  Users)
+        {
+            Users temp=(Users) obj;
+            if((userId==temp.userId)&&(userName.compareTo(temp.userName)==0))
+            {
+                return  true;
+            }
+        }
+        return false;
     }
 }

@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="common/header :: common-header" ></head>
-<head>
+<head th:include="common/header :: common-header" >
 	<title>24 School</title>
+	<!-- Latest compiled and minified CSS -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<!---newly added--------- for the new login page... - Mamun---------->
+
+	<!-- CSS-->
 </head>
 
-  <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title> 24School &amp; </title>
-
-
-    </head>
-
-    <body>
-
-        <div class="top-content">
-        	
-            <div class="inner-bg">
-                <div class="container">
-
-					<div class="row well">
-						<div class="col-sm-6">
+<body class="container">
+        <!-- Top content -->
+					<div class="light-box wide-box">
+					<div class="row ">
+						<div class="col-sm-6 col-md-offset-1">
 							<div >
-								<img src="../images/24School_logo.png"  class="center-left img-responsive img-circle" width="200" height="auto" />
+								<img th:src="@{/images/24School_logo.png}" class="center-left img-responsive img-circle" width="200" height="auto" >
 							</div>
                   <!--  <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
@@ -42,7 +36,7 @@
                     -->
 						</div>
 
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 
 
 							<div class="form-box">
@@ -50,18 +44,16 @@
 									<div class="form-top-left">
 										<h3>Login to our site</h3>
 									</div>
-									<div class="form-top-right">
-										<i class="fa fa-lock"></i>
-									</div>
+
 								</div>
 								<div class="form-bottom">
 									<form role="form" action="/login" method="post" class="login-form">
 										<div class="form-group">
-											<label class="sr-only" for="form-username">Username</label>
-											<input type="text" name="userName" placeholder="Username..." class=" myForm-control" id="form-username">
+											<label class="" for="form-username">Username</label>
+											<input required type="text" name="userName" placeholder="Username..." class=" myForm-control" id="form-username">
 										</div>
 										<div class="form-group">
-											<label class="sr-only" for="form-password">Password</label>
+											<label class="" for="form-password">Password</label>
 											<input required type="password" name="password" placeholder="Password..." class=" myForm-control" id="form-password">
 										</div>
 										<input required type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -92,8 +84,11 @@
 						</div>
 
 					</div>
+					</div>
 
-					<div class="row well">
+					<div class="light-box wide-box">
+
+					<div class="row">
 						<div class="col-sm-3">
 						</div>
                         	
@@ -105,30 +100,32 @@
 	                        			<h2>Don't have an Account? Sign up now</h2>
 	                            		<p><br></p>
 	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-pencil"></i>
-	                        		</div>
+
 	                            </div>
 	                            <div class="form-bottom">
 				                    <form role="form" action="/registration2" method="post" class="registration-form">
 				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-first-name">First name</label>
+				                    		<label class="" for="form-first-name">First name</label>
 				                        	<input required type="text" name="firstName" placeholder="First name..." class="myLightForm-control" id="form-first-name">
 				                        </div>
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-last-name">Last name</label>
+				                        	<label class="" for="form-last-name">Last name</label>
 				                        	<input required type="text" name="lastName" placeholder="Last name..." class="myLightForm-control" id="form-last-name">
 				                        </div>
+										<div class="form-group">
+											<label>Birth Date: </label>
+											<input required name="birthDate" placeholder="MM/DD/YYYY"  class="myLightForm-control"  type="date"><!-- readonly="readonly"-->
+										</div>
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-email">Email</label>
+				                        	<label class="" for="form-email">Email</label>
 				                        	<input required type="email" name="email" placeholder="Email..." class="myLightForm-control" id="form-email">
 				                        </div>
 										<div class="form-group">
-											<label class="sr-only">Username</label>
-											<input type="text" name="userName" placeholder="Username..." class="myLightForm-control" >
+											<label class="">Username</label>
+											<input required type="text" name="userName" placeholder="Username..." class="myLightForm-control" >
 										</div>
 										<div class="form-group">
-											<label class="sr-only">Password</label>
+											<label class="">Password</label>
 											<input required type="password" name="password" placeholder="Password..." class="myLightForm-control" >
 										</div>
 				                      <!--  <div class="form-group">
@@ -147,11 +144,9 @@
 						<div class="col-sm-3">
 						</div>
                     </div>
-                    
-                </div>
-            </div>
-            
-        </div>
+					</div>
+
+
 
         <!-- Footer -->
       <!--  <footer>
@@ -174,6 +169,6 @@
 		<div th:include="common/navbar :: common-footer" >
 		</div>
 
-	</body>
+</body>
 
 </html>

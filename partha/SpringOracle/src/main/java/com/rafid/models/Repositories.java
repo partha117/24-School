@@ -1,5 +1,7 @@
 package com.rafid.models;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,7 +25,9 @@ public class Repositories implements Serializable {
    // @JoinColumn(name = "USER_ID")
     private Users users;
 
+    public Repositories(){
 
+    }
 
     public Repositories(String repositoryName, String repositoryLink, Course course, Users users) {
         this.repositoryName = repositoryName;
@@ -40,13 +44,13 @@ public class Repositories implements Serializable {
         this.course = course;
     }
 
-/*    public Users getUsers() {
+    public Users getUsers() {
         return users;
     }
 
     public void setUsers(Users users) {
         this.users = users;
-    }*/
+    }
 
     public Long getRepositoryId() {
         return repositoryId;
@@ -70,5 +74,18 @@ public class Repositories implements Serializable {
 
     public void setRepositoryLink(String repositoryLink) {
         this.repositoryLink = repositoryLink;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Repositories)
+        {
+            Repositories temp=(Repositories)obj;
+            if((repositoryId==temp.repositoryId)&&(repositoryName==temp.repositoryName)&&(course.equals(temp.course)))
+            {
+                return  true;
+            }
+        }
+        return  false;
     }
 }
