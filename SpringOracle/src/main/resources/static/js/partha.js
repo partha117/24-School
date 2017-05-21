@@ -14,8 +14,8 @@ function createPost(path, param) {
 
 
 
-            var hiddenField = document.createElement("input");
-            //hiddenField.setAttribute("type", "hidden");
+    var hiddenField = document.createElement("input");
+    //hiddenField.setAttribute("type", "hidden");
 
     try {
         hiddenField.setAttribute("selects",param);
@@ -23,16 +23,16 @@ function createPost(path, param) {
     catch(err) {
         document.write(err.message);
     }
-            document.write("param added")
+    document.write("param added")
     try {
         form.appendChild(hiddenField);
     }
     catch(err) {
         document.write(err.message);
     }
-            document.write("appended");
-            form.submit();
-            document.write("submitted");
+    document.write("appended");
+    form.submit();
+    document.write("submitted");
 
 
 

@@ -24,5 +24,8 @@ public class Constants {
     public static String courseNotices = "courseNotices";
     public static String videoUrl = "videoUrl";
     public static String currTutorial = "currTutorial";
+    public static String userSearchList = "userSearchList";
+    public static String courseSearchList = "courseSearchList";
+    public static String questionSearchList = "questionSearchList";
 }
 
