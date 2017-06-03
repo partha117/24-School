@@ -39,5 +39,12 @@ public class Constants {
     public static String selectStack="selectStack";
     public static String last="lastPage";
     public  static  String enrolledRepositories="Enrolled_repositories";
+    public  static  String  User_List="User_repository_list";
+    public  static  String User_id="User_id";
+    public static  String  userRepository="USER_REPOSITORY";
+    public  static  String pieDataValue="PieDataValue";
+    public  static  String lineDataValue="LineDataValue";
+    public  static  String enrolleesName="EnrolleesName";
+    public  static  String  committer="committer";
 }
 

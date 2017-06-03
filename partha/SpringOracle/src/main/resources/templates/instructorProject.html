@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head th:replace="common/header :: common-header">
     <meta charset="UTF-8">
     <title>Project</title>
 </head>
 <!--<meta th:name="_csrf" th:content="${_csrf.token}"/>
-<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/> -->
+   <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/> -->
 <script>
-
     $(document).ready(function() {
         $("td").hover(
             function() {
@@ -39,67 +35,61 @@
     });
 </script>
 <body class="container-fluid ">
-
-
-
-<div class="spacer200">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Enrollees Repository
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <th:block th:each="enrolled: ${Enrolleed_data}">
-                <li>
-                    <a th:href="@{/enterEnrolleeRepository(courseId=${courseId},repositoryId=${enrolleed.repositoryId})}"th:text="${enrolleeed.name}"/>
-                </li>
-            </th:block>
-        </ul>
-    </div>
-</div>
+<div th:include="common/navbar :: common-navbar"></div>
 <div class="col-md-1">
-    <form action="/goBack" method="post">
+    <form action="/goBackInstructor" method="post">
         <input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="submit" style="display: none" id="hidden_button"/>
     </form>
 </div>
+
 <div class="container">
 
-
-
-    <table class="table table-striped" style="background:#ffffff">
-        <thead>
-        <tr>
-            <th>Repositories</th>
-            <th>Last Commit by</th>
-            <th>Commit message</th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="instance : ${folder_list}">
-
-            <tr>
-                <form id="form" action="/repoTraverse" method="post">
-                    <td>
-                        <input  style="background:none;border:none;margin:0;padding:0" type="submit"  name="selects" th:value="${instance.getName()}">
-
-                        <!--  <td th:text="${instance.getLastCommitter()}"></td>createPost('/repoTraverse', {currentPath:${currentPath},select:${instance.getName()}})
-                        <td th:text="${instance.getLastMessage()}"></td> -->
-                        <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    </td>
-                </form>
-            </tr>
-
-        </th:block>
-        </tbody>
-    </table>
-
-
-
-</div>
-<div>
-    <div class="col-md-7">
-
+    <div class="row top-margin light-box-course">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Enrollees Repository
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <th:block th:each="enrolleed: ${User_repository_list}">
+                    <li>
+                        <a th:href="@{/enterEnrolleeRepository(User_id=${enrolleed.users.userId},Change='true',currentCourseId=${enrolleed.course.courseId})}"th:text="${enrolleed.users.firstName}"/>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+        <div class="col-md-4 col-lg-1 col-xs-1 col-sm-1">
+            <div th:class="pull-left" th:include="common/sidebar :: common-sidebar"></div>
+        </div>
+        <div class="col-md-5 col-md-offset-3">
+            <table class="table table-striped" style="background:#ffffff">
+                <thead>
+                <tr>
+                    <th th:text="'Inside Repository of '+${CurrentEnrollee}"/>
+                    <!--<th>Last Commit by</th>
+                       <th>Commit message</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="instance : ${folder_list}">
+                    <tr>
+                        <form id="form" action="/traverseEnrolleeRepository" method="post">
+                            <td>
+                                <input  style="background:none;border:none;margin:0;padding:0" type="submit"  name="selects" th:value="${instance.getName()}">
+                                <!--  <td th:text="${instance.getLastCommitter()}"></td>createPost('/repoTraverse', {currentPath:${currentPath},select:${instance.getName()}})
+                                   <td th:text="${instance.getLastMessage()}"></td> -->
+                                <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            </td>
+                        </form>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="col-md-7">
+            </div>
+        </div>
     </div>
 </div>
-
 </body>
 </html>

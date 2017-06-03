@@ -14,5 +14,6 @@ public interface RepositoriesRepository extends CrudRepository<Repositories,Long
 
 
     List<Repositories> findByCourseAndUsers(Course course, Users users);
+    List<Repositories> findByCourse(Course course);
 }
 
