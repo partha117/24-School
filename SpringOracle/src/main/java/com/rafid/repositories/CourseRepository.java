@@ -12,4 +12,5 @@ public interface CourseRepository extends CrudRepository<Course,Long> {
     List<Course> findByCourseId(long courseId);
     List<Course> findByCourseNameAndSubjectAndCourseIntro(String courseName, String subject, String courseIntro);
     List<Course> findAll();
+    List<Course> findByCourseNameIgnoreCaseContaining(String courseName);
 }

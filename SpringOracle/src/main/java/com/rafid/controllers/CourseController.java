@@ -10,14 +10,14 @@ import com.rafid.repositories.NoticesRepository;
 import com.rafid.repositories.TutorialRepository;
 import com.rafid.repositories.UserRepository;
 import com.rafid.util.Constants;
+import com.sun.javafx.sg.prism.NGShape;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -109,10 +109,11 @@ public class CourseController {
     }
 
     @GetMapping("/enterCourse")
-    public String enterCourse(HttpSession session, Model model, @RequestParam("courseId") long courseId,
-                              @RequestParam("userType") String userType){
+    public String enterCourse(HttpSession session, Model model, @ModelAttribute("courseId") long courseId,
+                              @ModelAttribute("userType") String userType){
         //System.out.println("courseId = "+courseId);
         //System.out.println("user type = "+userType);
+        if(userType == null) return "redirect:/course";
         List<Course> courseResult = courseRepository.findByCourseId(courseId);
         Course course = courseResult.get(0);
         String userName = session.getAttribute(Constants.user_name).toString();
@@ -136,7 +137,29 @@ public class CourseController {
         model.addAttribute(Constants.currentCourse, course);
         return "course";
     }
+/*
+    @GetMapping("/enrollCourse")
+    public String enrollCourse(HttpSession session, Model model, @RequestParam("courseId") long courseId,
+                               @RequestParam("userType") String userType, RedirectAttributes redirectAttributes){
+        if ( session.getAttribute(Constants.user_name)!=null &&  !session.getAttribute(Constants.user_name).toString().isEmpty()) {
+            List<Course> courseResult = courseRepository.findByCourseId(courseId);
+            Course course = courseResult.get(0);
+            String userName = session.getAttribute(Constants.user_name).toString();
+            List<Users> userResult = userRepository.findByUserName(userName);
+            Users user = userResult.get(0);
+            course.getUsersSet().add(user);
+            courseRepository.save(course);
+            redirectAttributes.addAttribute("courseId", courseId);
+            redirectAttributes.addAttribute("userType", userType);
+            return "redirect:/enterCourse";
+        }
+        else{
+            return "redirect:/login";
+        }
 
+
+    }
+*/
 
     @PostMapping("/createCourse")
     public String createCourse(HttpSession session, Model model, @RequestParam("courseName") String courseName, @RequestParam("subject") String subject, @RequestParam("courseIntro") String courseIntro) {
