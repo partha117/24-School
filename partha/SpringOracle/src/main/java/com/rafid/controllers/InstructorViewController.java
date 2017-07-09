@@ -149,7 +149,7 @@ public class InstructorViewController {
             try {
                 gitHub = GitHub.connectUsingPassword(gitUserName, gitPassword);
                 Map<String, GHRepository> userRepositoryMap = null;
-                for (; true; )// loop is because of retry
+                for (; true; )//  retry
                 {
 
                     try {
@@ -239,6 +239,9 @@ public class InstructorViewController {
         {
             httpSession.removeAttribute(Constants.holderStack);
             httpSession.removeAttribute(Constants.currentPath);
+            httpSession.removeAttribute(Constants.selectStack);
+            httpSession.removeAttribute(Constants.userRepository);
+;
             /* Attttttttttttttttttention clear all session variable */
             return "redirect:/course";
         }
@@ -280,4 +283,5 @@ public class InstructorViewController {
         }
         return "redirect:/traverseEnrolleeRepository";
     }
+
 }

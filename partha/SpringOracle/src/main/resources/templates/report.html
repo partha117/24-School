@@ -8,6 +8,10 @@
 <body class="container-fluid ">
 <div th:include="common/navbar :: common-navbar"></div>
 <div class="container ">
+    <form action="/goBackFromReport" method="post">
+        <input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="submit" style="display: none" id="hidden_button"/>
+    </form>
     <div class="row top-margin light-box-course">
         <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
             <div th:class="pull-left" th:include="common/sidebar :: common-sidebar"></div>

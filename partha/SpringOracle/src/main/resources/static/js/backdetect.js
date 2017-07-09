@@ -22,7 +22,7 @@ var bajb_backdetect = {
             document.getElementById("hidden_button").click();
         }
         catch(err) {
-            document.write( err.message);
+            history.back();
         }
 
     },
