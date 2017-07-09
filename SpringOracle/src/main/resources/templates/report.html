@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header">
+    <meta charset="UTF-8">
+    <title>report</title>
+</head>
+<script type="text/javascript" src="../../static/js/plotly-latest.min.js" th:src="@{/js/plotly-latest.min.js}"></script>
+<body class="container-fluid ">
+<div th:include="common/navbar :: common-navbar"></div>
+<div class="container ">
+    <div class="row top-margin light-box-course">
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+            <div th:class="pull-left" th:include="common/sidebar :: common-sidebar"></div>
+        </div>
+        <th:block th:if="${PieDataValue}">
+            <data th:value="${PieDataValue}" id="PieData"/>
+        </th:block>
+        <th:block th:if="${LineDataValue}">
+            <th:block th:each="LineData,iterState:${LineDataValue}">
+
+                <data th:value="${LineData.getAsJsonString()}" th:id="'LineData'+${iterState.index}"/>
+            </th:block>
+        </th:block>
+        <div class="dropdown pull-right">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Enrollees
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <th:block th:each="enrolleed: ${User_repository_list}">
+                    <li>
+                        <a th:href="@{/showReport(User_id=${enrolleed.users.userId},courseId=${enrolleed.course.courseId})}"th:text="${enrolleed.users.firstName}"/>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+        <div class="col-md-8 col-lg-8 col-xs-8 col-sm-8 min-height">
+            <th:block th:if="${NO_SELECTION}">
+                <img  style="opacity: 0.3" class="center-block"src="../static/images/graph.png" th:src="@{/images/graph.png}" width="500" height="500">
+            </th:block>
+            <th:block th:if="${PieDataValue} or ${LineDataValue}" >
+                <div  style="text-align: center" class="text-center">
+                    <div class="center-block">
+                        <h3 class="text-primary" th:text="'EnrolleesName:'+${EnrolleesName}"></h3>
+                    </div>
+                </div>
+            </th:block>
+            <div th:if="${PieDataValue}">
+                <div id="PieGraph" style="width: 480px; height: 400px;padding-left: 60px"class="row center-block" />
+                <script type="text/javascript">
+                    var data=JSON.parse(document.getElementById("PieData").getAttribute("value"));
+                    var layout = {
+                        height: 400,
+                        width: 500
+                    };
+                    Plotly.newPlot('PieGraph', data, layout);
+                </script>
+            </div>
+            <div th:if="${LineDataValue}">
+                <th:block th:each="lineData,iterState:${LineDataValue}">
+                    
+                    <div  style="text-align: center;padding-top: 120px;padding-bottom: 20px" class="text-center">
+                        <div class="center-block">
+                            <h3 class="text-primary" th:text="'Commit history of:'+${committer.get(iterState.index)}"></h3>
+                        </div>
+                    </div>
+                <div th:id="'LineGraph'+${iterState.index}" style="width: 480px; height: 400px;padding-left: 60px"class="row center-block" />
+                <script th:inline ="javascript">
+                    var dataName= "LineData"+/*[[${iterState.index}]]*/
+                    var data=JSON.parse(document.getElementById(dataName).getAttribute("value"));
+                    var layout = {
+                        height: 500,
+                        width: 500
+                    };
+                    var name= "LineGraph"+/*[[${iterState.index}]]*/
+                    Plotly.newPlot(name, data, layout);
+                </script>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

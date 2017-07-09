@@ -1,0 +1,165 @@
+
+<!-- Rafid improved it -->
+<script>
+
+    $(document).ready(function() {
+
+        $(".dropdown-toggle").dropdown();
+
+
+
+
+    });
+</script>
+
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="common-navbar" role="navigation">
+    <div class="light-box wide-box no-padding navbar navbar-fixed-top">
+
+            <div class="row nav navbar-collapse">
+                <div class="col-sm-4">
+                    <div class="pull-left">
+
+                        <img th:src="@{/images/24School_logo.png}" class="img-responsive img-circle" width="55px" height="auto">
+
+                    </div>
+                    <div class="pull-left"><h3 class="text-primary text-left">24School</h3></div>
+                </div>
+                <div class="col-sm-4">
+                    <form action="" class="search-form">
+                        <div class="search-top-margin form-group has-feedback">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm-4">
+
+                       <div class="dropdown pull-right top-nav-drop-margin-top top-nav-drop-margin-right">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <strong
+                                        class="text-primary" th:text="${name}">
+
+
+                                </strong>
+                                </span><span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-login">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <p class="text-center">
+                                                    <span class="glyphicon glyphicon-user icon-size"></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <p class="text-left"><strong th:text="${name}"></strong></p>
+
+                                                <p class="text-left">
+                                                    <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#">Account Settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">User Rating </a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Messages</a></li>
+                                <li class="divider"></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout">Log Out</a></li>
+                            </ul>
+                        </div>
+
+                   <!-- <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Dropdown
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>-->
+
+
+
+
+
+
+
+                </div>
+            </div>
+    </div>
+
+</div>
+
+<!-- end of Rafid's improvement for this file -->
+<!--
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="common-navbar" class="navbar navbar-fixed-top" role="navigation">
+
+
+   <div th:include="common/navbar :: common-banner"></div>
+
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/forum">Forum</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</div>
+-->
+
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="common-footer" class="navbar navbar-fixed-bottom" role="navigation">
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; 24School 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

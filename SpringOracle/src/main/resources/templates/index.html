@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="common/header :: common-header" >
+	<title>24 School</title>
+	<!-- Latest compiled and minified CSS -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!---newly added--------- for the new login page... - Mamun---------->
+
+	<!-- CSS-->
+</head>
+
+<body class="container">
+        <!-- Top content -->
+					<div class="light-box wide-box">
+					<div class="row ">
+						<div class="col-sm-6 col-md-offset-1">
+							<div >
+								<img th:src="@{/images/24School_logo.png}" class="center-left img-responsive img-circle" width="200" height="auto" >
+							</div>
+                  <!--  <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Bootstrap</strong> Login &amp; Register Forms</h1>
+                            <div class="description">
+                            	<p>
+	                            	This is a free responsive <strong>"login and register forms"</strong> template made with Bootstrap. 
+	                            	Download it on <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>, 
+	                            	customize and use it as you like!
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+						</div>
+
+						<div class="col-sm-4">
+
+
+							<div class="form-box">
+								<div class="form-top">
+									<div class="form-top-left">
+										<h3>Login to our site</h3>
+									</div>
+
+								</div>
+								<div class="form-bottom">
+									<form role="form" action="/login" method="post" class="login-form">
+										<div class="form-group">
+											<label class="" for="form-username">Username</label>
+											<input required type="text" name="userName" placeholder="Username..." class=" myForm-control" id="form-username">
+										</div>
+										<div class="form-group">
+											<label class="" for="form-password">Password</label>
+											<input required type="password" name="password" placeholder="Password..." class=" myForm-control" id="form-password">
+										</div>
+										<input required type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+										<button type="submit" class="myButton btn btn-success">Sign in!</button>
+									</form>
+								</div>
+							</div>
+							<br>
+
+							<!--      	<div class="social-login">
+                                          <h3>...or login with:</h3>
+                                          <div class="social-login-buttons">
+                                              <a class="btn btn-link-2" href="#">
+                                                  <i class="fa fa-facebook"></i> Facebook
+                                              </a>
+                                              <a class="btn btn-link-2" href="#">
+                                                  <i class="fa fa-twitter"></i> Twitter
+                                              </a>
+                                              <a class="btn btn-link-2" href="#">
+                                                  <i class="fa fa-google-plus"></i> Google Plus
+                                              </a>
+                                          </div>
+
+                                      </div> 	-->
+
+						</div>
+						<div class="col-sm-3">
+						</div>
+
+					</div>
+					</div>
+
+					<div class="light-box wide-box">
+
+					<div class="row">
+						<div class="col-sm-3">
+						</div>
+                        	
+                        <div class="col-sm-6">
+                        	
+                        	<div class="form-box">
+                        		<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h2>Don't have an Account? Sign up now</h2>
+	                            		<p><br></p>
+	                        		</div>
+
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form role="form" action="/registration2" method="post" class="registration-form">
+				                    	<div class="form-group">
+				                    		<label class="" for="form-first-name">First name</label>
+				                        	<input required type="text" name="firstName" placeholder="First name..." class="myLightForm-control" id="form-first-name">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="" for="form-last-name">Last name</label>
+				                        	<input required type="text" name="lastName" placeholder="Last name..." class="myLightForm-control" id="form-last-name">
+				                        </div>
+										<div class="form-group">
+											<label>Birth Date: </label>
+											<input required name="birthDate" placeholder="MM/DD/YYYY"  class="myLightForm-control"  type="date"><!-- readonly="readonly"-->
+										</div>
+				                        <div class="form-group">
+				                        	<label class="" for="form-email">Email</label>
+				                        	<input required type="email" name="email" placeholder="Email..." class="myLightForm-control" id="form-email">
+				                        </div>
+										<div class="form-group">
+											<label class="">Username</label>
+											<input required type="text" name="userName" placeholder="Username..." class="myLightForm-control" >
+										</div>
+										<div class="form-group">
+											<label class="">Password</label>
+											<input required type="password" name="password" placeholder="Password..." class="myLightForm-control" >
+										</div>
+				                      <!--  <div class="form-group">
+				                        	<label class="sr-only" for="form-about-yourself">About yourself</label>
+				                        	<textarea name="form-about-yourself" placeholder="About yourself..." 
+				                        				class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+				                        </div>
+				                        -->
+										<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				                        <button type="submit" class="myButton btn btn-success">Sign up!</button>
+				                    </form>
+			                    </div>
+                        	</div>
+                        	
+                        </div>
+						<div class="col-sm-3">
+						</div>
+                    </div>
+					</div>
+
+
+
+        <!-- Footer -->
+      <!--  <footer>
+        	<div class="container">
+        		<div class="row">
+        			
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        			<!--	<p>Made by Anli Zaimi at <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a>
+        					having a lot of fun. <i class="fa fa-smile-o"></i></p> --
+        			</div>
+        			
+        		</div>
+        	</div>
+        </footer>
+        -->
+
+        <!-- Javascript -->
+
+		<div th:include="common/navbar :: common-footer" >
+		</div>
+
+</body>
+
+</html>
