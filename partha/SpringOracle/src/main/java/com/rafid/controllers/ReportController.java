@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,7 +25,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by ASUS on 02-Jun-17.
+ * Created by Partha Chakraborty on 02-Jun-17.
+ */
+/**
+ * <h1>Handles all the task to show report</h1>
+ * This class is responsible for serving request related to show report.
+ * <p>
+ * @author  Partha Chakraborty
+ * @version 1.0
+ * @since   02-Jun-17
  */
 @Controller
 public class ReportController {
@@ -39,6 +48,13 @@ public class ReportController {
     LineData lineData[];
 
 
+    /**
+     * This method will serve the request with "/goToReport".The main task of the method is serving view with user data.
+     *@param courseId is a {@link ModelAttribute} containing  String "courseId" that points  course id of the current course user is requesting.
+     *@param httpSession is a {@link HttpSession} type object..
+     *@param  model is a {@link Model} class object.
+     *@return String log in page or report page url.
+     */
     @RequestMapping("/goToReport")
     public String  goToReport(Model model,@ModelAttribute("courseId")String courseId, HttpSession httpSession)
     {
@@ -57,6 +73,15 @@ public class ReportController {
 
         return "report";
     }
+    /**
+     * This method will serve the request with "/goToReport".The main task of the method is serving view with user data.
+     *@param courseId is a {@link ModelAttribute} containing  String "courseId" that points  course id of the current course user is requesting.
+     *@param httpSession is a {@link HttpSession} type object..
+     *@param  model is a {@link Model} class object.
+     *@param  user is a {@link ModelAttribute} containing  String "User_id" that points  user id(enrollees user id ) of the user just clicked.
+     *@param redirectAttributes  is a {@link RedirectAttributes} type object.
+     *@return String log in page or report page url.
+     */
     @RequestMapping("/showReport")
     public String  showReport(Model model, RedirectAttributes redirectAttributes, @ModelAttribute("User_id") String user,@ModelAttribute("courseId")String courseId, HttpSession httpSession)
     {
@@ -96,6 +121,23 @@ public class ReportController {
         }
         return "report";
     }
+
+    /**
+     * This method will serve the request with "/goBackFromReport".The main task of the method  is imitate back button of browser.
+     *@param httpSession is a {@link HttpSession} type object.
+     *@return String course page url.
+     */
+    @RequestMapping("/goBackFromReport")
+    public String  goBackFromReport(HttpSession httpSession)
+    {
+        httpSession.removeAttribute(Constants.User_List);
+        return "redirect:/course";
+    }
+    /**
+     * This method will collect user data from ghRepository and then set them according to appropriate format in {@link LineData} and {@link PieData} object.
+     *@param ghRepository is a {@link GHRepository} type object.
+     *@param  model is a {@link Model} class object.
+     */
     private void generateData(GHRepository ghRepository,Model model)
     {
         List<GHCommit> l=ghRepository.queryCommits().list().asList();
@@ -150,6 +192,11 @@ public class ReportController {
         }
         return;
     }
+    /**
+     * This method returns the collaborator list of a repository.
+     *@param ghUserGHPersonSet is a {@link GHPersonSet} type object.
+     *@return List of String type object.
+     */
     private List<String > nameList(GHPersonSet<GHUser> ghUserGHPersonSet)
     {
         List<String> list=new ArrayList<String>();
@@ -160,6 +207,13 @@ public class ReportController {
         }
         return list;
     }
+    /**
+     * This method  will return the content of a set or list as an array of object.
+     *@param c is a {@link Class}.
+     *@param object is a generic {@link Object} .
+     *@param  <E>  is the type of object.
+     *@return String log in page or report page url.
+     */
     private static <E> E[] getAsArray(Object object,Class c)
     {
         if(object instanceof List)

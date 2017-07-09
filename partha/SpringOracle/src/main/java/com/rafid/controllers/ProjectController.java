@@ -20,14 +20,23 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by ASUS on 29-Apr-17.
+ * Created by Partha Chakraborty on 29-Apr-17.
  */
 
 
+/**
+ * <h1>Handles all the task in project page</h1>
+ * This class take command when the user request the project page and then handles all the requests regarding
+ * page traversing ,back command, show file content.
+ * <p>
+ * @author  Partha Chakraborty
+ * @version 1.0
+ * @since   29-Apr-17.
+ */
 @Controller
 public class ProjectController {
     /**
-     * The HelloWorld program implements an application that
+     * The user repository is a
      * simply displays "Hello World!" to the standard output.
      *
      *@author (classes and interfaces only, required)
@@ -41,6 +50,17 @@ public class ProjectController {
      */
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * This function will be triggered by a request having  "/project"
+     * and then based on wheather the user has already logged in or not in the system it will redirect user
+     * to log in page or project page(if git account already exist in the system) or git log in page.
+     *@param httpSession is a {@link HttpSession} type object.
+     *@param attribute is a {@link ModelAttribute} containing  String "Optional" that points user Name that has been provided for collaborator is not available {see addCollaborator}
+     *@param redirectAttributes  is a {@link RedirectAttributes} type object.
+     *@param  model is a {@link Model} class object.
+     *@return String log in page or git log in page or project page url.
+     */
     @RequestMapping("/project")
     public String projectTab(HttpSession httpSession,Model model,@ModelAttribute("Optional")String  attribute,RedirectAttributes redirectAttributes)
     {
@@ -92,6 +112,14 @@ public class ProjectController {
         }
 
     }
+    /**
+     * This methos will response the request with "/projectLogIn".If the user has not provided his git account information yet  this method will save users git account information in database.
+     *@param httpSession is a {@link HttpSession} type object.
+     *@param gitPassword is a {@link String} required as request parameter having content "Password".
+     *@param gitUserName  is a {@link String} required as request parameter having content "Username".
+     *@param model is a {@link Model} class object.
+     *@return String log in page  or project page url.
+     */
     @RequestMapping("/projectLogIn")
     public String projectLogIn(@RequestParam("Username") String gitUserName, @RequestParam("Password") String gitPassword, HttpSession httpSession, Model model)
     {
@@ -140,6 +168,14 @@ public class ProjectController {
             }
         }
     }
+    /**
+     *This method will response the request with "/repoTraverse".This method will feed user with appropriate data of his git repository saved in system by using Git API.To reduce response time this method saves browser stack history as http session attribute.
+     *@param httpSession is a {@link HttpSession} type object.
+     *@param selects is a {@link String } that must be a model attribute with attribute id "selects" that represents which folder user clicked in repository.
+     *@param redirectAttributes is a {@link RedirectAttributes} class object.
+     *@param model is a {@link Model} class object.
+     *@return Based on condition it will return a string containing log in page or git log in page or repository page or file content show page url.
+     */
     @RequestMapping("/repoTraverse")
     public String repositoryTraverse(@ModelAttribute("selects")String  selects, Model model, HttpSession httpSession, RedirectAttributes redirectAttributes) {
         String name = (String) httpSession.getAttribute(Constants.userName);
@@ -260,6 +296,14 @@ public class ProjectController {
         return "redirect:/login";
     }
 
+    /**
+     * IThis method will response the request with "/goBack".Will  simulate the browser back button press.
+     * Based on user browse history it will redirect to repository or project page.
+     *@param httpSession is a {@link HttpSession} type object.
+     *@param redirectAttributes is a {@link RedirectAttributes} type object.
+     *@param model is a {@link Model} class object.
+     *@return String  containing url.
+     */
     @PostMapping("/goBack")
     public  String onBack(HttpSession httpSession ,Model model,RedirectAttributes redirectAttributes)
     {
@@ -323,6 +367,14 @@ public class ProjectController {
         }
         return "redirect:/repoTraverse";
     }
+    /**
+     * This method will response of the request with "/addCollaborator".This method will add  git collaborator to  current repository of current user
+     *@param httpSession is a {@link HttpSession} type object.
+     *@param inRepository is a {@link String} required as "Add_in" {@link ModelAttribute};
+     *@param collabortor is a {@link String} required as "Collaborator_name" {@link ModelAttribute};
+     *@param redirectAttributes is a {@link RedirectAttributes} type object.
+     *@return String log in page  or project page url.
+     */
     @RequestMapping("/addCollaborator")
     public String addCollaborator(@ModelAttribute("Add_in")String  inRepository,@ModelAttribute("Collaborator_name")String collabortor,RedirectAttributes redirectAttributes,HttpSession httpSession)
     {
@@ -374,6 +426,13 @@ public class ProjectController {
         return "redirect:project";
 
     }
+    /**
+     * This method will response of the request with "/deleteFile".This method will delete the current file of current user.
+     *@param httpSession is a {@link HttpSession} type object.
+     *@param  model is a {@link Model} class object.
+     *@param redirectAttributes is a {@link RedirectAttributes} type object.
+     *@return String log in page  or project page url.
+     */
     @RequestMapping ("/deleteFile")
     public String deleteFile(HttpSession httpSession,Model model,RedirectAttributes redirectAttributes)
     {
@@ -424,9 +483,15 @@ public class ProjectController {
 
 
         }
+
         return "redirect:/repoTraverse";
 
     }
+    /**
+     * This method will  convert an input stream into a string.
+     *@param is is a {@link InputStream} type object.
+     *@return String log in page  or project page url.
+     */
     public static String getStringFromInputStream(InputStream is) {
 
         BufferedReader br = null;
@@ -453,6 +518,7 @@ public class ProjectController {
                 }
             }
         }
+
 
         return sb.toString();
 
