@@ -1,18 +1,12 @@
 package com.rafid.controllers;
 
 
-import com.rafid.models.Course;
-import com.rafid.models.Notices;
-import com.rafid.models.Tutorial;
-import com.rafid.models.Users;
-import com.rafid.repositories.CourseRepository;
-import com.rafid.repositories.NoticesRepository;
-import com.rafid.repositories.TutorialRepository;
-import com.rafid.repositories.UserRepository;
+import com.rafid.models.*;
+import com.rafid.project.AddRepository;
+import com.rafid.repositories.*;
 import com.rafid.util.Constants;
-import com.sun.javafx.sg.prism.NGShape;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import org.apache.catalina.User;
+import org.kohsuke.github.GHRepository;
+import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by ASUS on 4/29/2017.
@@ -34,6 +26,8 @@ public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
+    private RepositoriesRepository repositoriesRepository;
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -43,12 +37,25 @@ public class CourseController {
     private TutorialRepository tutorialRepository;
 
     @RequestMapping("/course")
-    public String course(HttpSession session, Model model) {
+    public String course(HttpSession session, Model model,@ModelAttribute("OptionalMessage")String  attribute) {
+
         if ( session.getAttribute(Constants.user_name)!=null &&  !session.getAttribute(Constants.user_name).toString().isEmpty()) {
+            if((attribute==null)||(attribute.length()==0))
+            {
+                model.addAttribute("OptionalMessage","NotNecessary");
+            }
+            else
+            {
+                model.addAttribute("OptionalMessage",attribute);
+            }
 			List<Course> totalCourses = courseRepository.findAll();
 			List<Course> enrolledCourses = new ArrayList<>();
 			List<Course> instructCourses = new ArrayList<>();
+            List<AddRepository>enrolledCoursesRepository=new ArrayList<>();
+            List<Repositories> allRepositories;
             String userName = session.getAttribute(Constants.user_name).toString();
+            Users users=userRepository.findByUserName(userName).get(0);
+            int counter=0;
 			if(!totalCourses.isEmpty()){
                 for(Course c: totalCourses){
                     if(c.isUserInInstructors(userName)){
@@ -56,6 +63,21 @@ public class CourseController {
                     }
                     else if(c.isUserInUsersSet(userName)){
                         enrolledCourses.add(c);
+                        allRepositories=repositoriesRepository.findByCourseAndUsers(c,users);
+                        counter=0;
+                        for(Repositories temp:allRepositories)
+                        {
+                            if(temp.getCourse().equals(c))
+                            {
+                                enrolledCoursesRepository.add(new AddRepository(c.getCourseName(),temp.getRepositoryName(),true,c.getCourseId()));
+                                counter++;
+                                break;
+                            }
+                        }
+                        if(counter==0)
+                        {
+                            enrolledCoursesRepository.add(new AddRepository(c.getCourseName(),null,false,c.getCourseId()));
+                        }
                     }
                 }
             }
@@ -63,6 +85,8 @@ public class CourseController {
             model.addAttribute(Constants.name_in_page, session.getAttribute(Constants.user_name).toString());
             model.addAttribute(Constants.courseContents, Constants.courseNormal);
             model.addAttribute(Constants.enrolledCourses, enrolledCourses);
+            model.addAttribute(Constants.enrolledRepositories,enrolledCoursesRepository);
+
             return "course";
         }
         else {
@@ -78,6 +102,7 @@ public class CourseController {
         return "streamVideo";
 
     }
+
 
     @PostMapping("/createNotice")
     public String createNotice(HttpSession session, Model model, @RequestParam("topic") String topic,
@@ -109,11 +134,10 @@ public class CourseController {
     }
 
     @GetMapping("/enterCourse")
-    public String enterCourse(HttpSession session, Model model, @ModelAttribute("courseId") long courseId,
-                              @ModelAttribute("userType") String userType){
+    public String enterCourse(HttpSession session, Model model, @RequestParam("courseId") long courseId,
+                              @RequestParam("userType") String userType){
         //System.out.println("courseId = "+courseId);
         //System.out.println("user type = "+userType);
-        if(userType == null) return "redirect:/course";
         List<Course> courseResult = courseRepository.findByCourseId(courseId);
         Course course = courseResult.get(0);
         String userName = session.getAttribute(Constants.user_name).toString();
@@ -137,10 +161,10 @@ public class CourseController {
         model.addAttribute(Constants.currentCourse, course);
         return "course";
     }
-/*
+
     @GetMapping("/enrollCourse")
     public String enrollCourse(HttpSession session, Model model, @RequestParam("courseId") long courseId,
-                               @RequestParam("userType") String userType, RedirectAttributes redirectAttributes){
+                               RedirectAttributes redirectAttributes){
         if ( session.getAttribute(Constants.user_name)!=null &&  !session.getAttribute(Constants.user_name).toString().isEmpty()) {
             List<Course> courseResult = courseRepository.findByCourseId(courseId);
             Course course = courseResult.get(0);
@@ -149,6 +173,7 @@ public class CourseController {
             Users user = userResult.get(0);
             course.getUsersSet().add(user);
             courseRepository.save(course);
+            String userType = Constants.enrollee;
             redirectAttributes.addAttribute("courseId", courseId);
             redirectAttributes.addAttribute("userType", userType);
             return "redirect:/enterCourse";
@@ -159,7 +184,6 @@ public class CourseController {
 
 
     }
-*/
 
     @PostMapping("/createCourse")
     public String createCourse(HttpSession session, Model model, @RequestParam("courseName") String courseName, @RequestParam("subject") String subject, @RequestParam("courseIntro") String courseIntro) {
@@ -200,6 +224,90 @@ public class CourseController {
         model.addAttribute("name", session.getAttribute(Constants.user_name).toString());
         model.addAttribute("courseContents", Constants.courseCreate);
         return "course";
+    }
+    @RequestMapping("/addRepository")
+    public String addRepository(@ModelAttribute("course_id") long courseId, @ModelAttribute("repository_name") String  repositoryName, Model model, HttpSession httpSession, RedirectAttributes redirectAttributes)
+    {
+        String name=(String)httpSession.getAttribute(Constants.userName);
+        if(name==null ||(name.length()==0))
+        {
+            return "redirect:/login";
+        }
+        Users user=userRepository.findByUserName(name).get(0);
+
+        String password= user.getGitPassword();
+        if(password==null||password.length()==0)
+        {
+
+            return "/gitLogin";
+        }
+        String userName=user.getGitUserId();
+        GitHub gitHub=null;
+        try {
+            gitHub=GitHub.connectUsingPassword(userName,password);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            GHRepository ghRepository=gitHub.getMyself().getAllRepositories().get(repositoryName);
+            if(ghRepository==null)
+            {
+                redirectAttributes.addAttribute("OptionalMessage","NotAvailable");
+                return "redirect:/course";
+            }
+            redirectAttributes.addAttribute("OptionalMessage","Available");
+            Course course=courseRepository.findByCourseId(courseId).get(0);
+            Repositories repositories=new Repositories(ghRepository.getName(),ghRepository.gitHttpTransportUrl(),course,user);
+            repositoriesRepository.save(repositories);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/course";
+
+    }
+    @RequestMapping("/changeRepository")
+    public String changeRepository(@ModelAttribute("course_id") long courseId, @ModelAttribute("repository_name") String  repositoryName, Model model, HttpSession httpSession, RedirectAttributes redirectAttributes)
+    {
+        String name=(String)httpSession.getAttribute(Constants.userName);
+        if(name==null ||(name.length()==0))
+        {
+            return "redirect:/login";
+        }
+
+        Users user=userRepository.findByUserName(name).get(0);
+
+        String password= user.getGitPassword();
+        if(password==null||password.length()==0)
+        {
+
+            return "/gitLogin";
+        }
+        String userName=user.getGitUserId();
+        GitHub gitHub=null;
+        try {
+            gitHub=GitHub.connectUsingPassword(userName,password);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            GHRepository ghRepository=gitHub.getMyself().getAllRepositories().get(repositoryName);
+            if(ghRepository==null)
+            {
+                redirectAttributes.addAttribute("OptionalMessage","NotAvailable");
+                return "redirect:/course";
+            }
+            redirectAttributes.addAttribute("OptionalMessage","Available");
+            Course course=courseRepository.findByCourseId(courseId).get(0);
+            Repositories oldRepository=repositoriesRepository.findByCourseAndUsers(course,user).get(0);
+            oldRepository.setRepositoryName(ghRepository.getName());
+            oldRepository.setRepositoryLink(ghRepository.gitHttpTransportUrl());
+            repositoriesRepository.save(oldRepository);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/course";
+
     }
 
 

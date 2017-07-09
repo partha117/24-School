@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,9 +37,11 @@ public class UploadController {
 */
     //@RequestMapping(value = "/upload", method = RequestMethod.POST)
     @PostMapping("/uploadPropic") // //new annotation since 4.3
-    public String singleFileUpload(HttpSession session, @RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+    public @ResponseBody String singleFileUpload(HttpSession session, @RequestParam("file") MultipartFile file, @RequestParam("dummy") String dummy,
+                            RedirectAttributes redirectAttributes) {
 
+        System.out.println("Got propic upload request");
+        System.out.println(dummy);
         File tempFile = new File(UPLOADED_FOLDER);
         if(!tempFile.exists()){
             tempFile.mkdirs();
@@ -46,7 +49,8 @@ public class UploadController {
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "redirect:/";
+            System.out.println("propic uplaod failed");
+            return "failure";
         }
 
         try {
@@ -62,6 +66,8 @@ public class UploadController {
             if(!users.isEmpty()){
                 users.get(0).setProfilePic(bytes);
                 userRepository.save(users.get(0));
+                System.out.println("propic upload successful");
+                return "success";
             }
 
             ///database saving end
@@ -73,7 +79,8 @@ public class UploadController {
             e.printStackTrace();
         }
 
-        return "redirect:/";
+        System.out.println("propic upload failed");
+        return "failure";
     }
 
    /* @GetMapping("/")
