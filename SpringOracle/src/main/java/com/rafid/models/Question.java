@@ -2,6 +2,7 @@ package com.rafid.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ab9ma on 5/20/2017.
@@ -16,6 +17,9 @@ public class Question{
     private  String content;
     @ManyToOne(targetEntity = Users.class,fetch = FetchType.EAGER)
     private Users writtenBy;
+
+    @OneToMany(targetEntity = Answer.class, fetch = FetchType.EAGER)
+    private List<Answer> answers;
 
     @Column(nullable = false)
     Date writtenDate;
@@ -36,11 +40,28 @@ public class Question{
         this.writtenDate = writtenDate;
     }
 
+    public Question() {
+    }
+
     public Question(long id, String content, Users writtenBy, Date writtenDate) {
         this.id = id;
         this.content = content;
         this.writtenBy = writtenBy;
         this.writtenDate = writtenDate;
+    }
+
+    public Question(String content, Users writtenBy, Date writtenDate) {
+        this.content = content;
+        this.writtenBy = writtenBy;
+        this.writtenDate = writtenDate;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     public Question(long id, String content) {

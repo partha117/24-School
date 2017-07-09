@@ -21,22 +21,23 @@ public class Answer{
     @Column(nullable = false)
     Date writtenDate;
 
-    @ManyToOne(targetEntity = Question.class,fetch = FetchType.EAGER)
-    private Question answerOn;
-    public Answer(long id, String content, Users writtenBy, Date writtenDate, Question answerOn) {
+   /* @ManyToOne(targetEntity = Question.class,fetch = FetchType.EAGER)
+    private Question answerOn;*/
+    public Answer(long id, String content, Users writtenBy, Date writtenDate) {
         this.id = id;
         this.content = content;
         this.writtenBy = writtenBy;
         this.writtenDate = writtenDate;
-        this.answerOn = answerOn;
+
     }
 
-    public Question getAnswerOn() {
-        return answerOn;
-    }
+    public Answer(){
 
-    public void setAnswerOn(Question answerOn) {
-        this.answerOn = answerOn;
+    }
+    public Answer(String content, Users writtenBy, Date writtenDate) {
+        this.content = content;
+        this.writtenBy = writtenBy;
+        this.writtenDate = writtenDate;
     }
 
     public Users getWrittenBy() {
@@ -55,12 +56,7 @@ public class Answer{
         this.writtenDate = writtenDate;
     }
 
-    public Answer(long id, String content, Users writtenBy, Date writtenDate) {
-        this.id = id;
-        this.content = content;
-        this.writtenBy = writtenBy;
-        this.writtenDate = writtenDate;
-    }
+
 
     public Answer(long id, String content) {
         this.id = id;
@@ -83,8 +79,8 @@ public class Answer{
         this.content = content;
     }
 
-    public Answer(long id, String content, Users writtenBy) {
-        this.id = id;
+    public Answer(String content, Users writtenBy) {
+
         this.content = content;
         this.writtenBy = writtenBy;
     }

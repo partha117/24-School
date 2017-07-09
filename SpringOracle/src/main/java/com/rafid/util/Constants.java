@@ -49,5 +49,6 @@ public class Constants {
     public static String userSearchList = "userSearchList";
     public static String courseSearchList = "courseSearchList";
     public static String questionSearchList = "questionSearchList";
+    public static String questionPosts = "posts";
 }
 
