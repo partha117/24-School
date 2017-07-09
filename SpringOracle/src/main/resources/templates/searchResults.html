@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/header :: common-header">
+    <meta charset="UTF-8">
+    <title>24 School</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
+</head>
+<body class="container-fluid">
+    <div th:include="common/navbar :: common-navbar"></div><br/>
+    <div class="container ">
+        <div class="row top-margin light-box-course">
+            <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                <div th:class="pull-left" th:include="common/sidebar :: common-sidebar"></div>
+            </div>
+            <div class="col-md-8 col-lg-8 col-xs-8 col-sm-8 min-height">
+
+                <div class="row">
+                    <h2 class="text-primary">Users</h2>
+                    <div class="list-group">
+
+
+                        <!--/*@thymesVar id="courseNotices" type=""*/-->
+                        <a th:each="user : ${userSearchList}" href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+                            <div th:if="${user.userName != name}" class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1" th:text="${user.userName}"></h4>
+                                <h4 class="mb-1" th:text="${user.firstName}"></h4>
+                                <h4 class="mb-1" th:text="${user.lastName}"></h4>
+                            </div>
+
+
+
+
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <h2 class="text-primary">Courses</h2>
+                    <div class="list-group">
+                        <!--/*@thymesVar id="instructCourses" type=""*/-->
+                        <div th:each="course : ${courseSearchList}"  class="list-group-item list-group-item-action flex-column align-items-start ">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1" th:text="${course.courseName}"></h5>
+
+                            </div>
+
+
+
+                            <p class="mb-1" th:text="${course.courseIntro}"></p>
+                            <a class="alert-link" th:href="@{/enrollCourse(courseId=${course.courseId},userType='enrollee')}">
+                                Enroll
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

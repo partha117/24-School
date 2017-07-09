@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="common/header :: common-header" >
+
+    <title>24 School</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <!--<link th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>-->
+    <script>
+        function selectGender(gender){
+
+            var genderM = document.getElementById("genderM");
+            var genderF = document.getElementById("genderF");
+            var genderO = document.getElementById("genderO");
+
+            if (gender == "M"){
+                genderM.style.backgroundColor = "#000";
+                genderM.style.color = "#fff";
+
+                genderF.style.backgroundColor = "#fff";
+                genderF.style.color = "#000";
+                genderO.style.backgroundColor = "#fff";
+                genderO.style.color = "#000";
+            }
+            else if(gender=="F"){
+                genderF.style.backgroundColor = "#000";
+                genderF.style.color = "#fff";
+
+                genderM.style.backgroundColor = "#fff";
+                genderM.style.color = "#000";
+                genderO.style.backgroundColor = "#fff";
+                genderO.style.color = "#000";
+
+            }
+            else {
+                genderO.style.backgroundColor = "#000";
+                genderO.style.color = "#fff";
+
+                genderM.style.backgroundColor = "#fff";
+                genderM.style.color = "#000";
+                genderF.style.backgroundColor = "#fff";
+                genderF.style.color = "#000";
+            }
+
+        }
+    </script>
+
+</head>
+
+
+<body>
+<!-- Top content -->
+<div th:include="common/navbar :: common-banner"></div>
+
+
+          <div class="light-box wide-box">
+            <div class="row">
+                <div class="col-sm-3">
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h2>Please complete your profile</h2>
+                                <p></p>
+                            </div>
+
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" action="/completeProfile" method="post" class="registration-form">
+
+                                <div class="form-Group">
+                                    <label>Gender: </label><br>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn myWhiteBtn" id="genderM">
+                                            <input required type="radio" name="gender" value="M" onclick="selectGender('M')">Male
+                                        </label>
+                                        <label class="btn myWhiteBtn" id="genderF">
+                                            <input required type="radio" name="gender" value="F" onclick="selectGender('F')">Female
+                                        </label>
+                                        <label class="btn myWhiteBtn" id="genderO">
+                                            <input required type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
+                                        </label>
+                                    </div>
+                                </div>
+                                <div><br></div>
+                                <div class="form-group">
+                                    <label class="">Profession</label>
+                                    <input name="profession" placeholder="Profession" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="">Country</label>
+                                    <input name="country" placeholder="Country" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="">State</label>
+                                    <input name="state" placeholder="State" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="">City</label>
+                                    <input name="city" placeholder="City" class="myLightForm-control"  type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="">Zip Code</label>
+                                    <input  name="zipCode" placeholder="Zip code" class="myLightForm-control"  type="number">
+                                </div>
+
+                                <input type="hidden" th:name="userName" th:value="${name}"/>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                                <button type="submit" class="myButton btn btn-success">Done</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                </div>
+            </div>
+          </div>
+
+
+<div th:include="common/navbar :: common-footer" >
+</div>
+
+
+<!-- Javascript -->
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="container">
+
+
+    <div class="center-block">
+        <img src="../images/24School_logo.png" class="img-circle img-responsive center-block" th:width="300" th:height="auto"/>
+    </div>
+    <div class="center-block"><h2>Account Created. Please complete your profile</h2></div><br>
+
+    <form class="form-horizontal" action="/completeProfile" method="post">
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Birthdate: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input required name="birthDate" placeholder="MM/DD/YYYY" id="datepicker" class="myLightForm-control"  type="text"><!-- readonly="readonly"--
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Gender: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn myWhiteBtn" id="genderM">
+                            <input required type="radio" name="gender" value="M" onclick="selectGender('M')">Male
+                        </label>
+                        <label class="btn myWhiteBtn" id="genderF">
+                            <input required type="radio" name="gender" value="F" onclick="selectGender('F')">Female
+                        </label>
+                        <label class="btn myWhiteBtn" id="genderO">
+                            <input required type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Country: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input name="country" placeholder="Country" class="myLightForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">State: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input name="state" placeholder="State" class="myLightForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">City: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input name="city" placeholder="City" class="myLightForm-control"  type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Zip code: </label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <input  name="zipCode" placeholder="Zip code" class="myLightForm-control"  type="number">
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Text input--
+
+        <div class="form-group">
+            <label class="col-md-5 control-label"></label>
+            <div class="col-md-3 inputGroupContainer">
+                <div class="input-group">
+                    <input  class="myButton  btn btn-success"  type="Submit" value="Done">
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" th:name="userName" th:value="${name}"/>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    </form>
+</div>
+
+-->

@@ -1,0 +1,63 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="common-sidebar">
+    <div class="nav-side-menu navbar-collapse collapse">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dashboard fa-lg"></i> Home
+                    </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i>Courses</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                    <a href="#"><i class="fa fa-globe fa-lg"></i>Notifications </a>
+                </li>
+
+
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                    <a href="#"><i class="fa fa-car fa-lg"></i> Forum </span></a>
+                </li>
+
+
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i> Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users fa-lg"></i> Messages
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i> Projects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i> Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
