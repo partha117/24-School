@@ -80,10 +80,10 @@ public class VideoUploadController {
         }
 
         try {
-            if(!tempFile.exists()){
+           /* if(!tempFile.exists()){
                 tempFile.createNewFile();
                 System.out.println(tempFile.getAbsolutePath());
-            }
+            }*/
 
 
             // Get the file and save it somewhere

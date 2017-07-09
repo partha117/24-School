@@ -45,8 +45,8 @@ public class Users implements Serializable{
     int rating;
     @Column(name = "GIT_ACCOUNT_ID", columnDefinition = "VARCHAR(100)")
     String gitUserId;
-
-    //@Column(name="GIT_PASSWORD")
+    @Column(name = "GIT_Password", columnDefinition = "VARCHAR(100)")
+    String  gitPassword;
 
     @Lob
     private byte[] profilePic;
@@ -94,6 +94,14 @@ public class Users implements Serializable{
         this.city = city;
         this.zipCode = zipCode;
 
+    }
+
+    public String getGitPassword() {
+        return gitPassword;
+    }
+
+    public void setGitPassword(String gitPassword) {
+        this.gitPassword = gitPassword;
     }
 
     public long getUserId() {
@@ -212,5 +220,18 @@ public class Users implements Serializable{
 
     public void setProfilePic(byte[] profilePic) {
         this.profilePic = profilePic;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof  Users)
+        {
+            Users temp=(Users) obj;
+            if((userId==temp.userId)&&(userName.compareTo(temp.userName)==0))
+            {
+                return  true;
+            }
+        }
+        return false;
     }
 }

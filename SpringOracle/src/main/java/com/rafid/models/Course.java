@@ -139,4 +139,17 @@ public class Course implements Serializable{
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Course)
+        {
+            Course temp=(Course) obj;
+            if((courseId==temp.courseId)&&(courseName.compareTo(temp.courseName)==0))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

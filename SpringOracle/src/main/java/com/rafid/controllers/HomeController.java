@@ -8,7 +8,6 @@ import com.rafid.repositories.UserRepository;
 import com.rafid.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +32,7 @@ public class HomeController {
             return "redirect:/login";
         }
     }
+
     @Autowired
     private UserRepository userRepository;
 
@@ -42,7 +42,7 @@ public class HomeController {
     @RequestMapping("/search")
     public String search(HttpSession session, Model model, @RequestParam("search") String searchItem){
         if ( session.getAttribute(Constants.user_name)!=null &&  !session.getAttribute(Constants.user_name).toString().isEmpty()){
-            List<Users>userResults = userRepository.findByUserNameContainsOrFirstNameContainsOrLastNameContainsAllIgnoreCase(searchItem, searchItem, searchItem);
+            List<Users> userResults = userRepository.findByUserNameContainsOrFirstNameContainsOrLastNameContainsAllIgnoreCase(searchItem, searchItem, searchItem);
             List<Course>courseResults = courseRepository.findByCourseNameIgnoreCaseContaining(searchItem);
             model.addAttribute(Constants.userSearchList, userResults);
             model.addAttribute(Constants.courseSearchList, courseResults);
