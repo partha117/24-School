@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="common/header :: common-header" ></head>
+<head>
+    <title>24 School</title>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Home page">
+    <meta name="author" content="Mamun">
+
+
+    <!-- Bootstrap Core CSS -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/css/verticalTab.css}">
+
+</head>
+
+<body class="container-fluid">
+<div th:include="common/navbar :: common-navbar"></div>
+
+<div>
+    <p id="log"> </p>
+</div>
+
+<div class="container">
+    <div class="row top-margin">
+
+        <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+            <div th:class="pull-left" th:include="common/sidebar :: common-sidebar"></div>
+        </div>
+
+        <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
+            <div class="box wide-box">
+                <div class="tab">
+                    <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'New')">New</button>
+                    <div id="dynamicButtons">
+
+                    </div>
+                </div>
+
+                <div id="New" class="tabcontent">
+                    <form id="new_form" action="/sendMessage" method="post">
+                        <div class="form-group">
+                            <label for="inputsm">To</label>
+                            <input name="receiverName" class="form-control input-sm" id="inputsm" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputlg">Message</label>
+                            <input name="content" class="form-control input-lg" id="inputlg" type="text">
+                        </div>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <button type="submit" class="myButton btn btn-success">Send</button>
+                    </form>
+                </div>
+
+                <div id="dynamicContents">
+
+                </div>
+
+            </div> <!--box-->
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<div th:include="common/navbar :: common-footer"></div>
+
+<!-- jQuery -->
+<script th:src="@{/js/jquery.js}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<script>
+
+    ///for tabs
+
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the link that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+
+   // function generateHtmlConversationButton(i){
+    //    return
+
+    var allMessages;
+
+    function loadConversations(){
+        var form1 = document.getElementById("new_form");
+        var csrf_token_name = form1.elements[2].name;
+        var csrf_token_value = form1.elements[2].value;
+
+        //document.write(csrf_token_name+" "+csrf_token_value);
+
+
+        var request = new XMLHttpRequest();
+        var responseText;
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200 && this.response!="" && this.response!="error") {
+
+                allMessages = JSON.parse(this.response);
+                var total = allMessages.total;
+                var y=" ";
+                var x = " ";
+                for(var i=0; i<total; i++) {
+
+                    var message = allMessages.messages[i];
+                    var toFrom;
+                    if(message.type=="sent"){
+                        toFrom = "TO";
+                    }
+                    else {
+                        toFrom = "FROM";
+                    }
+
+
+                    y += "<button class=\"tablinks\" onclick=\"openCity(event, 'convo-" + i + "')\">" + message.with + "</button>\n";
+
+                    x+= "<div id=\"convo-" + i + "\" class=\"tabcontent\">\
+              <b>"+toFrom+": "+message.with+"<br>\
+              Date: "+message.date+"<br>\
+                <hr><p>"+message.content+"<br></p> <hr></b>\
+                    <div class=\"form-box\">\
+                    <form action=\"/sendMessage\" method=\"post\">\
+                        <div class=\"form-group\">\
+                          <input name=\"content\" class=\"form-control input-lg\" type=\"text\">\
+                         </div>\
+                         <input name=\"receiverName\" type=\"hidden\" value=\""+message.with+"\">\
+                          <input type=\"hidden\" name=\""+csrf_token_name+"\" value=\""+csrf_token_value+"\" />\
+                         <button type=\"submit\" class=\"myButton btn btn-success\">Reply</button>\
+                    </form>\
+                    </div>\
+                </div>";
+                }
+                //  }
+                document.getElementById("dynamicButtons").innerHTML =y;
+                document.getElementById("dynamicContents").innerHTML=x;
+                document.getElementById("defaultOpen").click();
+
+            }
+        }
+        request.open("GET", "/getMessages", true);
+        request.send();
+
+
+
+
+    }
+    loadConversations();
+
+    document.getElementById("defaultOpen").click();
+
+
+
+</script>
+
+</body>
+
+</html>

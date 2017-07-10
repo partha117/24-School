@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="common/header :: common-header" >
+<head>
 
     <title>24 School</title>
-    <!-- Latest compiled and minified CSS -->
 
-    <!--<link th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>-->
+    <!-- gist from common header =========================================
+    ===========
+    -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"  th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"  th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!--<link href="../../static/css/bootstrap.css" rel="stylesheet" type="text/css">-->
+
+    <script  th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script
+
+            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+            crossorigin="anonymous"
+            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+
+    <script th:src="@{/webjars/angularjs/1.6.2/angular.min.js}"></script>
+
+
+    <!--- the following 2 links, 2 scripts, and the first function was added for datePicker.
+    And it works properly when thymeleafs are not added.
+ -Mamun -->
+    <!---newly added--------- for the new login page... - Mamun---------->
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/business-casual.css}">
+    <link th:href="@{/css/myStyle.css}" type="text/css" rel="stylesheet"/>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+    <!--JS -->
+    <script  th:src="@{/webjars/html5shiv/3.7.0/html5shiv.js}"></script>
+    <script  th:src="@{/webjars/Respond.js/1.4.2/respond.min.js}"></script>
+
+    <!---------------common header ends here-->
+
     <script>
         function selectGender(gender){
 
@@ -54,75 +95,75 @@
 <div th:include="common/navbar :: common-banner"></div>
 
 
-          <div class="light-box wide-box">
-            <div class="row">
-                <div class="col-sm-3">
-                </div>
+<div class="light-box ">
+    <div class="row">
+        <div class="col-sm-3">
+        </div>
 
-                <div class="col-sm-6">
+        <div class="col-sm-6">
 
-                    <div class="form-box">
-                        <div class="form-top">
-                            <div class="form-top-left">
-                                <h2>Please complete your profile</h2>
-                                <p></p>
-                            </div>
-
-                        </div>
-                        <div class="form-bottom">
-                            <form role="form" action="/completeProfile" method="post" class="registration-form">
-
-                                <div class="form-Group">
-                                    <label>Gender: </label><br>
-                                    <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn myWhiteBtn" id="genderM">
-                                            <input required type="radio" name="gender" value="M" onclick="selectGender('M')">Male
-                                        </label>
-                                        <label class="btn myWhiteBtn" id="genderF">
-                                            <input required type="radio" name="gender" value="F" onclick="selectGender('F')">Female
-                                        </label>
-                                        <label class="btn myWhiteBtn" id="genderO">
-                                            <input required type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
-                                        </label>
-                                    </div>
-                                </div>
-                                <div><br></div>
-                                <div class="form-group">
-                                    <label class="">Profession</label>
-                                    <input name="profession" placeholder="Profession" class="myLightForm-control"  type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="">Country</label>
-                                    <input name="country" placeholder="Country" class="myLightForm-control"  type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="">State</label>
-                                    <input name="state" placeholder="State" class="myLightForm-control"  type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="">City</label>
-                                    <input name="city" placeholder="City" class="myLightForm-control"  type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="">Zip Code</label>
-                                    <input  name="zipCode" placeholder="Zip code" class="myLightForm-control"  type="number">
-                                </div>
-
-                                <input type="hidden" th:name="userName" th:value="${name}"/>
-                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-                                <button type="submit" class="myButton btn btn-success">Done</button>
-
-                            </form>
-
-                        </div>
+            <div class="form-box">
+                <div class="form-top">
+                    <div class="form-top-left">
+                        <h2>Please complete your profile</h2>
+                        <p></p>
                     </div>
 
                 </div>
-                <div class="col-sm-3">
+                <div class="form-bottom">
+                    <form role="form" action="/completeProfile" method="post" class="registration-form">
+
+                        <div class="form-Group">
+                            <label>Gender: </label><br>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn myWhiteBtn" id="genderM">
+                                    <input required type="radio" name="gender" value="M" onclick="selectGender('M')">Male
+                                </label>
+                                <label class="btn myWhiteBtn" id="genderF">
+                                    <input required type="radio" name="gender" value="F" onclick="selectGender('F')">Female
+                                </label>
+                                <label class="btn myWhiteBtn" id="genderO">
+                                    <input required type="radio" name="gender" value="O"  onclick="selectGender('O')">Others
+                                </label>
+                            </div>
+                        </div>
+                        <div><br></div>
+                        <div class="form-group">
+                            <label class="">Profession</label>
+                            <input name="profession" placeholder="Profession" class="myLightForm-control"  type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="">Country</label>
+                            <input name="country" placeholder="Country" class="myLightForm-control"  type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="">State</label>
+                            <input name="state" placeholder="State" class="myLightForm-control"  type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="">City</label>
+                            <input name="city" placeholder="City" class="myLightForm-control"  type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="">Zip Code</label>
+                            <input  name="zipCode" placeholder="Zip code" class="myLightForm-control"  type="number">
+                        </div>
+
+                        <input type="hidden" th:name="userName" th:value="${name}"/>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                        <button type="submit" class="myButton btn btn-success">Done</button>
+
+                    </form>
+
                 </div>
             </div>
-          </div>
+
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+</div>
 
 
 <div th:include="common/navbar :: common-footer" >
