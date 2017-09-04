@@ -1,4 +1,7 @@
 # 24 School
+<p align="center">
+<img src="SpringOracle/src/main/resources/static/images/24School_logo.png" class="img-responsive" width="150" height="150" >
+</p>
 24 School is an online education platform that connects learners around globe in real time.24 School was designed as a solution of these problems.
 - Students’ access to teachers outside the class is limited. 
 - A real time online group study platform is not available.
