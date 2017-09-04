@@ -40,7 +40,7 @@ blocked him.
 To develop 24 School we used Javascript,Java and obviously HTML,CSS.Spring framework,Hibernate,Thymleaf and github api is also used to implement the idea.This web application was submitted as course project of CSE 324.
 
 ## Contributor's of this project
-- <h2>Abdullah Al Mamun</h2>
-- <h2>Rafid Ul Islam</h2>
-- <h2>Partha Chakraborty</h2>
+- <h3>Abdullah Al Mamun</h3>
+- <h3>Rafid Ul Islam</h3>
+- <h3>Partha Chakraborty</h3>
 
