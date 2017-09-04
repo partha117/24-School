@@ -33,3 +33,11 @@ It is something like Quora(Obviously in a shorter form) user can ask question ,v
 blocked him.
 -  Users can reply to the messages they receive.
 -  A user can block another user from sending messages to him
+
+To develop 24 School we used Javascript,Java and obviously HTML,CSS.Spring framework,Hibernate,Thymleaf and github api is also used to implement the idea.This web application was submitted as course project of CSE 324.
+
+## Contributor's of this project
+- <h2>Abdullah Al Mamun</h2>
+- <h2>Rafid Ul Islam</h2>
+- <h2>Partha Chakraborty</h2>
+
