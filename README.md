@@ -5,7 +5,7 @@
 24 School is an online education platform that connects learners around globe in real time.24 School was designed as a solution of these problems.
 - Students’ access to teachers outside the class is limited. 
 - A real time online group study platform is not available.
-- Teachers can’t monitor of the projects of the students
+- Teachers can’t monitor  the projects of the students
 - Peer to peer collaborative platform for students.
 
 To solve the problems our system prsents 5 features.
